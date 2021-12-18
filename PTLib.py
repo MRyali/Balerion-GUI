@@ -25,9 +25,7 @@ class MCP3008:
 
     def interogate(self):
         data = self.readMCP3008()
-        
         voltage = self.dig2volts(data)
-        
         return (voltage, data)
 
 #Defining the Pressure Tansducer Class
@@ -40,8 +38,7 @@ class PT:
     y_offset = -0.8008008008
     slope = -y_offset/0.004
 
-    def __init__(self, ADC_init: MCP3008):
-        
+    def __init__(self, ADC_init: MCP3008):  
         self.ADC = ADC_init
 
     def __volts2PSI(self,voltage):
@@ -49,7 +46,6 @@ class PT:
         return p1
 
     def getPressure(self):
-       
         self.voltage, _ = self.ADC.interogate()
         self.pressure = self.__volts2PSI(self.voltage)
         return self.pressure
