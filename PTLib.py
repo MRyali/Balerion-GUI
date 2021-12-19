@@ -4,14 +4,13 @@ import spidev
 
 
 class MCP3008:
-    def __init__(self,SPI_init, channel_init):
+    def __init__(self,SPI_init):
         self.SPI = SPI_init
-        self.channel = channel_init
 
-    def readMCP3008(self):
+    def readMCP3008(self, channel):
         #gets the raw 10-bit value from the MCP3008 ADC
 
-        rawData = self.SPI.xfer([1, (8 + self.channel) << 4, 0])
+        rawData = self.SPI.xfer([1, (8 + channel) << 4, 0])
 
         #convert 8-bit message to a 10-bit reading
         processedData = ((rawData[1]&3) << 8) + rawData[2]
@@ -23,8 +22,8 @@ class MCP3008:
         voltage = (digitalReading * 5.365) / 1023
         return voltage
 
-    def interogate(self):
-        data = self.readMCP3008()
+    def interogate(self, channel):
+        data = self.readMCP3008(channel)
         voltage = self.dig2volts(data)
         return (voltage, data)
 
@@ -38,15 +37,19 @@ class PT:
     y_offset = -0.8008008008
     slope = -y_offset/0.004
 
-    def __init__(self, ADC_init: MCP3008):  
+    def __init__(self, ADC_init: MCP3008, channel_init: int):  
+        # the ADC chip the PT is connected to
         self.ADC = ADC_init
+        # the channel on the PT is connected to on the ADC val=0...7
+        self.channel = channel_init
+
 
     def __volts2PSI(self,voltage):
         p1 = abs(self.slope*voltage+self.y_offset)
         return p1
 
     def getPressure(self):
-        self.voltage, _ = self.ADC.interogate()
+        self.voltage, _ = self.ADC.interogate(self.channel)
         self.pressure = self.__volts2PSI(self.voltage)
         return self.pressure
 
@@ -58,7 +61,7 @@ def openSPI(chip, frequency):
     return spi
 
 SPI0 = openSPI(0, 1000)
-PTF201 = PT(MCP3008(SPI0,0))
+PTF201 = PT(MCP3008(SPI0),0)
 
 while True:
     
@@ -68,8 +71,6 @@ while True:
     formatedText = "%2.2f PSI | %2.5f V"% (p1,v1)
     print(formatedText)
     
-    
-
     time.sleep(0.5) 
 
 
