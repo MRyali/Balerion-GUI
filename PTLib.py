@@ -19,6 +19,7 @@ class MCP3008:
         return processedData
 
     def dig2volts(self,digitalReading: int):
+        #converts digital value (0...1023) to voltage (0...5V)
         voltage = (digitalReading * 5.365) / 1023
         return voltage
 
@@ -60,8 +61,16 @@ def openSPI(chip, frequency):
     spi.max_speed_hz = frequency
     return spi
 
+#initialize SPI bus
 SPI0 = openSPI(0, 1000)
-PTF201 = PT(MCP3008(SPI0),0)
+SPI1 = openSPI(1, 1000)
+
+#initialize ADCs
+ADC0 = MCP3008(SPI0)
+ADC1 = MCP3008(SPI1)
+
+#initalize PTs
+PTF201 = PT(ADC1,2)
 
 while True:
     
