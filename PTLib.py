@@ -83,15 +83,15 @@ PTs = dict()
 #Generat PT Objects from the cfg file and store them in the PT dictionary
 for PT_name in PTsCfg.sections():
     PT_port = PTsCfg[PT_name]['port']
-    PT_channel = PT_port[1]
+    PT_channel = int(PT_port[1])-1
 
     if PT_port[0] == 'A':
         PTs[PT_name] = PT(ADC0,PT_channel)
     elif PT_port[0] == 'B':
         PTs[PT_name] = PT(ADC1,PT_channel)
 
-    PTs[PT_name].slope = PTsCfg[PT_name]['offset']
-    PTs[PT_name].offset = PTsCfg[PT_name]['offset']
+    PTs[PT_name].slope = float(PTsCfg[PT_name]['slope'])
+    PTs[PT_name].offset = float(PTsCfg[PT_name]['offset'])
 
     logging.info("{PTs[PT_name]} has been added successfully")
     
@@ -103,9 +103,9 @@ while True:
     p2 = PTs['PTF202'].getPressure()
     v2 = PTs['PTF202'].voltage
 
-    formatedText = "{:0>5} PSI | {:0>5} V".format(p1,v1)
+    formatedText = "PTF201: {:0>7.2f} PSI | {:0>4.2f} V".format(p1,v1)
     print(formatedText)
-    formatedText = "%2.2f PSI | %2.5f V"% (p2,v2)
+    formatedText = "PTF202: {:0>7.2f} PSI | {:0>4.2f} V".format(p2,v2)
     print(formatedText)
     
     time.sleep(0.5) 
