@@ -82,6 +82,8 @@ def PTs_init(cfg_file_name: str):
 
     #Creat a PT dictionary
     PTs = dict()
+    
+    print('Adding PTs from cfg')
 
     #Generate PT Objects from the cfg file and store them in the PT dictionary
     for PT_name in PTsCfg.sections():
@@ -95,10 +97,12 @@ def PTs_init(cfg_file_name: str):
 
         PTs[PT_name].slope = float(PTsCfg[PT_name]['slope'])
         PTs[PT_name].offset = float(PTsCfg[PT_name]['offset'])
+        
+        
 
-        print("{PTs[PT_name]} has been added successfully")
+        print("[{}] has been added successfully".format(PT_name))
 
-        return PTs
+    return PTs
     
 
 def refreshPTs(PT_dict: dict(), PT_freq_Hz: float):
@@ -107,6 +111,10 @@ def refreshPTs(PT_dict: dict(), PT_freq_Hz: float):
     while True:
         for PT_name in PT_dict:
             PT_dict[PT_name].getPressure()
+            p1 = PT_dict[PT_name].getPressure()
+            v1 = PT_dict[PT_name].voltage
+            formatedText = "[{}]: {:0>7.2f} PSI | {:0>4.2f} V".format(PT_name,p1,v1)
+            print(formatedText)
             time.sleep(PT_period)
 
 
