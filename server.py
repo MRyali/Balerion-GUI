@@ -17,10 +17,10 @@ def openSocket():
     return s
 
 
-def connectToClient(socket):
+def connectToClient(serverSocket):
     # looks for any client trying to connect to the server
-    socket.listen(1)
-    clientsocket, address = socket.accept()
+    serverSocket.listen(1)
+    clientsocket, address = serverSocket.accept()
     print(f"Connection from {address} has been established.")
 
     return clientsocket
@@ -34,16 +34,13 @@ def sendrcv(socket):
         receiveData(socket)
 
 
-
-
 def communicateFV():
-    ServerFVSocket = openSocket()
+    FV_server = openSocket()
     while True:
         try:
-            FVSocket = connectToClient(ServerFVSocket)
-            
+            FV_client = connectToClient(FV_server)
             #FVSocket.send(bytes("Hey there!!!","utf-8"))
-            sendrcv(FVSocket)
+            sendrcv(FV_client)
         except:
             print("Connection error occured. Restart required.")
             break
