@@ -30,6 +30,7 @@ def receiveData(socket):
     print(msg.decode("utf-8"))
 
 def sendrcv(socket):
+    print('Awaiting data')
     while True:
         receiveData(socket)
 
