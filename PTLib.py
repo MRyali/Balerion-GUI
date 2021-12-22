@@ -114,7 +114,7 @@ def refreshPTs(PT_dict: dict(), PT_freq_Hz: float):
             p1 = PT_dict[PT_name].getPressure()
             v1 = PT_dict[PT_name].voltage
             formatedText = "[{}]: {:0>7.2f} PSI | {:0>4.2f} V".format(PT_name,p1,v1)
-            print(formatedText)
+            #print(formatedText)
             time.sleep(PT_period)
 
 
