@@ -112,7 +112,7 @@ def openSocket():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
     server_ip = '172.20.10.2' #socket.gethostname()
-    port = 5234
+    port = 7234
     s.bind((server_ip,port))
 
     print(f"Server Online. IP adress: {server_ip} Port {port}")
@@ -138,9 +138,9 @@ def server_IO(socket,readings:Readings):
 def receiveData(socket,readings:Readings):
 
     msg = socket.recv(1024)
+    print(msg.decode("utf-8"))
 
     if msg:
-        print(msg.decode("utf-8"))
         msg = msg.decode("utf-8")
         data = msg.split("#")
         while data:
@@ -152,9 +152,10 @@ def receiveData(socket,readings:Readings):
                 time = received_reading[2]
 
                 readings.push(name,value,time)
-            data.remove[data[0]]
+            data.remove(data[0])
+            
                 
     else:
         socket.close
         print("Connection Lost")
-        raise Exception("Connection Lost")
+        #raise Exception("Connection Lost")
