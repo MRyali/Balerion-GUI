@@ -11,7 +11,7 @@ systemName = 'FV'
 
 PTs = PTLib.PTs_init("PTs_Config_FV.ini")
 
-server={'IP':'172.20.10.2','port':5234}
+server={'IP':'172.20.10.2','port':7234}
 
 FV_readings = telemetry.Readings(PTs,[],[])
 
