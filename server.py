@@ -26,19 +26,31 @@ def connectToClient(serverSocket):
     return clientsocket
 
 def receiveData(socket):
+
     msg = socket.recv(1024)
-    print(msg.decode("utf-8"))
+
+    if msg:
+        print(msg.decode("utf-8"))
+    else:
+        socket.close
+        print("Connection Lost")
+        raise Exception("Connection Lost")
 
 def sendrcv(socket):
     print('Awaiting data')
     while True:
-        receiveData(socket)
+        try:
+            receiveData(socket)
+        except:
+            break
+        
 
 
 def communicateFV():
     FV_server = openSocket()
     while True:
         try:
+            print("Awaiting connection")
             FV_client = connectToClient(FV_server)
             #FVSocket.send(bytes("Hey there!!!","utf-8"))
             sendrcv(FV_client)
