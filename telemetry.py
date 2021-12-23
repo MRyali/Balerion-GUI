@@ -138,13 +138,13 @@ def server_IO(socket,readings:Readings):
 def receiveData(socket,readings:Readings):
 
     msg = socket.recv(1024)
-    print(msg.decode("utf-8"))
-
+    \
     if msg:
         msg = msg.decode("utf-8")
         data = msg.split("#")
         while data:
-            if len(data) == 24:
+            if len(data[0]) == 24:
+                print(msg)
                 received_reading = data[0].split("/")
 
                 name = received_reading[0]
@@ -158,4 +158,4 @@ def receiveData(socket,readings:Readings):
     else:
         socket.close
         print("Connection Lost")
-        #raise Exception("Connection Lost")
+        raise Exception("Connection Lost")
