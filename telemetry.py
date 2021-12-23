@@ -138,7 +138,7 @@ def server_IO(socket,readings:Readings):
 def receiveData(socket,readings:Readings):
 
     msg = socket.recv(1024)
-    \
+    
     if msg:
         msg = msg.decode("utf-8")
         data = msg.split("#")
