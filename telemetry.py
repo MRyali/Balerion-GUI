@@ -63,7 +63,7 @@ def client_IO(server_socket:socket.socket,frequency:float,client_readings:Readin
         try:
             # attempt reading/writing
             for reading_name in client_readings.readings:
-                sendReading(reading_name,client_readings.readings[reading_name],socket)
+                sendReading(reading_name,client_readings.readings[reading_name],server_socket)
                 """
                 readable = select.select([socket], [], [], timeout)
                 if readable[0]:
