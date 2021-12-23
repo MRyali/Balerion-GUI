@@ -141,21 +141,23 @@ def receiveData(socket,readings:Readings):
     
     if msg:
         msg = msg.decode("utf-8")
-        data = msg.split("#")
-        while data:
-            if len(data[0]) == 24:
-                print(msg)
-                received_reading = data[0].split("/")
-
-                name = received_reading[0]
-                value = received_reading[1]
-                time = received_reading[2]
-
-                readings.push(name,value,time)
-            data.remove(data[0])
-            
-                
     else:
         socket.close
         print("Connection Lost")
         raise Exception("Connection Lost")
+
+    data = msg.split("#")
+    while data:
+        if len(data[0]) == 24:
+            print(msg)
+            received_reading = data[0].split("/")
+
+            name = received_reading[0]
+            value = received_reading[1]
+            time = received_reading[2]
+
+            readings.push(name,value,time)
+        data.remove(data[0])
+            
+                
+    
