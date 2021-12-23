@@ -11,7 +11,7 @@ systemName = 'FV'
 
 PTs = PTLib.PTs_init("PTs_Config_FV.ini")
 
-serverSocket = telemetry.connectToSever('172.20.10.2',5234)
+server={'IP':'172.20.10.2','port':5234}
 
 FV_readings = telemetry.Readings(PTs,[],[])
 
@@ -19,5 +19,5 @@ FV_readings = telemetry.Readings(PTs,[],[])
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.submit(PTLib.refreshPTs,PTs,2) #PT interogation thread
-    executor.submit(telemetry.client_coms,serverSocket,2,FV_readings)
+    executor.submit(telemetry.client_coms,server,2,FV_readings)
 

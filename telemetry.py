@@ -43,16 +43,30 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
     msg = str.encode(msg)
     socket.sendall(msg)
 
-def client_coms(socket: socket.socket, frequency:float, client_readings: Readings):
+def client_coms(server: dict, frequency:float, client_readings: Readings):
     timeout = 0.01 #seconds
     period = 1/frequency - timeout
+    
     while True:
-        client_readings.refrechAll()
-        for reading_name in client_readings.readings:
-            sendReading(reading_name,client_readings.readings[reading_name],socket)
-            """
-            readable = select.select([socket], [], [], timeout)
-            if readable[0]:
-                read(socket)
-            """
-            time.sleep(period)
+        try:
+            print("Looking for server")
+            socket = connectToSever(server['IP'], server['port'])
+            while True:
+                client_readings.refrechAll()
+                try:
+                    for reading_name in client_readings.readings:
+                        sendReading(reading_name,client_readings.readings[reading_name],socket)
+                        """
+                        readable = select.select([socket], [], [], timeout)
+                        if readable[0]:
+                            read(socket)
+                        """
+                        time.sleep(period)
+                except:
+                    print('Client lost connection to server')
+                    break
+        except:
+            print("Could not connect")
+            time.sleep(5)
+        
+        
