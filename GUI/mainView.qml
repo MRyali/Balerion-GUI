@@ -59,8 +59,8 @@ Item {
         svh004.update()
 
         svo101.update()
-        svo102.update()
         svo103.update()
+        svo102.update()
         svo104.update()
 
         svf201.update()
@@ -89,7 +89,7 @@ Item {
         Rectangle {
             id: p8id
             width: 1400
-            height: 750
+            height: 789
             color: "#0c182e"
             border.color: "#ffffff"
             anchors.left: parent.left
@@ -97,18 +97,19 @@ Item {
             anchors.topMargin: 10
             anchors.leftMargin: 10
 
-            TitleBar {
-                title: "P&ID"
-
-            }
-
-
             Item {
                 id: p8id_bg
                 anchors.fill: parent
 
 
 
+
+                Image {
+                    id: gages_frames1
+                    anchors.fill: parent
+                    source: "content/QML objects/Gage/Gages_frames.png"
+                    fillMode: Image.PreserveAspectFit
+                }
                 Image {
                     id: pipes
                     x: 0
@@ -123,18 +124,15 @@ Item {
                     anchors.topMargin: 0
                     fillMode: Image.PreserveAspectFit
                 }
-
-                Image {
-                    id: gages_frames1
-                    anchors.fill: parent
-                    source: "content/QML objects/Gage/Gages_frames.png"
-                    fillMode: Image.PreserveAspectFit
-                }
             }
 
             Item {
                 id: gages
                 anchors.fill: parent
+                anchors.rightMargin: 0
+                anchors.bottomMargin: -19
+                anchors.leftMargin: 0
+                anchors.topMargin: 19
 
                 Column {
                     id: gageCluster1
@@ -338,11 +336,21 @@ Item {
                 }
             }
 
+            TitleBar {
+                title: "P&ID"
+
+            }
+
+
+
+
 
 
 
             Item {
                 id: valves
+                x: 0
+                y: 20
                 width: 200
                 height: 200
 
@@ -388,16 +396,17 @@ Item {
                     state: "OD"
                 }
                 Valve{
-                    id: svo102
-                    name: "SVO102"
+                    id: svo103
+                    name: "SVO103"
                     x: 598
                     y: 489
+                    clip: true
                     ang_Open: 90
                     state: "OD"
                 }
                 Valve{
-                    id: svo103
-                    name: "SVO103"
+                    id: svo102
+                    name: "SVO102"
                     x: 929
                     y: 421
                     ang_Open: 0
@@ -416,7 +425,7 @@ Item {
                     name: "SVF201"
                     x: 598
                     y: 215
-                    ang_Open: 0
+                    ang_Open: 90
                     state: "OD"
                 }
                 Valve{
@@ -443,6 +452,137 @@ Item {
                     ang_Open: 0
                     state: "OD"
                 }
+            }
+
+            Item {
+                id: labels
+                x: 0
+                y: 21
+                width: 200
+                height: 200
+
+                Text {
+
+                    x: 187
+                    y: 407
+                    color: "#ffffff"
+                    text: qsTr("SVH001")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 277
+                    y: 407
+                    color: "#ffffff"
+                    text: qsTr("SVH002")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 165
+                    y: 303
+                    color: "#ffffff"
+                    text: qsTr("SVH003")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 468
+                    y: 407
+                    color: "#ffffff"
+                    text: qsTr("SVH004")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 1030
+                    y: 742
+                    color: "#ffffff"
+                    text: qsTr("SVO101")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 920
+                    y: 474
+                    color: "#ffffff"
+                    text: qsTr("SVO102")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 526
+                    y: 502
+                    color: "#ffffff"
+                    text: qsTr("SVO103")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 1024
+                    y: 474
+                    color: "#ffffff"
+                    text: qsTr("SVO104")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 533
+                    y: 230
+                    color: "#ffffff"
+                    text: qsTr("SVF201")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 898
+                    y: 86
+                    color: "#ffffff"
+                    text: qsTr("SVF202")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 1029
+                    y: 336
+                    color: "#ffffff"
+                    text: qsTr("SVF203")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+                Text {
+                    x: 1028
+                    y: 87
+                    color: "#ffffff"
+                    text: qsTr("SVF204")
+                    font.pixelSize: 18
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.family: "Arial"
+                }
+
             }
         }
 
@@ -721,12 +861,13 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;height:0;width:0}D{i:3}D{i:5}D{i:6}D{i:4}D{i:9}D{i:10}D{i:11}D{i:8}D{i:13}D{i:14}
-D{i:15}D{i:12}D{i:17}D{i:18}D{i:19}D{i:16}D{i:21}D{i:22}D{i:23}D{i:20}D{i:25}D{i:26}
-D{i:27}D{i:24}D{i:29}D{i:30}D{i:31}D{i:28}D{i:33}D{i:34}D{i:35}D{i:32}D{i:36}D{i:7}
+    D{i:0;height:0;width:0}D{i:4}D{i:5}D{i:3}D{i:8}D{i:9}D{i:10}D{i:7}D{i:12}D{i:13}D{i:14}
+D{i:11}D{i:16}D{i:17}D{i:18}D{i:15}D{i:20}D{i:21}D{i:22}D{i:19}D{i:24}D{i:25}D{i:26}
+D{i:23}D{i:28}D{i:29}D{i:30}D{i:27}D{i:32}D{i:33}D{i:34}D{i:31}D{i:35}D{i:6}D{i:36}
 D{i:38}D{i:39}D{i:40}D{i:41}D{i:42}D{i:43}D{i:44}D{i:45}D{i:46}D{i:47}D{i:48}D{i:49}
-D{i:37}D{i:2}D{i:51}D{i:52}D{i:50}D{i:54}D{i:55}D{i:56}D{i:57}D{i:58}D{i:59}D{i:60}
-D{i:61}D{i:62}D{i:63}D{i:64}D{i:65}D{i:66}D{i:67}D{i:68}D{i:69}D{i:53}D{i:72}D{i:73}
-D{i:71}D{i:70}D{i:1}
+D{i:37}D{i:51}D{i:52}D{i:53}D{i:54}D{i:55}D{i:56}D{i:57}D{i:58}D{i:59}D{i:60}D{i:61}
+D{i:62}D{i:50}D{i:2}D{i:64}D{i:65}D{i:63}D{i:67}D{i:68}D{i:69}D{i:70}D{i:71}D{i:72}
+D{i:73}D{i:74}D{i:75}D{i:76}D{i:77}D{i:78}D{i:79}D{i:80}D{i:81}D{i:82}D{i:66}D{i:85}
+D{i:86}D{i:84}D{i:83}D{i:1}
 }
 ##^##*/
