@@ -2,6 +2,8 @@ import socket
 import select
 import time
 
+armedValves: dict = {}
+
 class Readings:
 
     def __init__(self,PT_dict:dict,TC_dict:dict,SV_dict:dict):
@@ -111,7 +113,7 @@ def openSocket():
     # Reserves a socket on the server machine
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
-    server_ip = '172.20.10.2' #socket.gethostname()
+    server_ip = '172.20.10.3' #socket.gethostname()
     port = 7234
     s.bind((server_ip,port))
 
@@ -163,5 +165,21 @@ def receiveData(socket,readings:Readings):
     except:
         print('Data processing error occured')
             
+
+def sendCommand(inReadings:Readings):
+    for valve in armedValves:
+        if armedValves[valve]=='ARMED':
+            reading = inReadings.readings[valve]
+            state = reading['value']
+            
+            if state == "OPENED":
+                inReadings.push(valve,"CLOSED","00000")
+                print("Set",valve,"to CLOSED")
+            else:
+                inReadings.push(valve,"OPENED","00000")
+                print("Set",valve,"to OPENED")
+
+   
+
                 
     

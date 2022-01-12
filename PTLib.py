@@ -111,30 +111,8 @@ def refreshPTs(PT_dict: dict(), PT_freq_Hz: float):
     while True:
         for PT_name in PT_dict:
             PT_dict[PT_name].getPressure()
-            p1 = PT_dict[PT_name].getPressure()
-            v1 = PT_dict[PT_name].voltage
-            formatedText = "[{}]: {:0>7.2f} PSI | {:0>4.2f} V".format(PT_name,p1,v1)
+            #p1 = PT_dict[PT_name].pressure
+            #v1 = PT_dict[PT_name].voltage
+            #formatedText = "[{}]: {:0>7.2f} PSI | {:0>4.2f} V".format(PT_name,p1,v1)
             #print(formatedText)
             time.sleep(PT_period)
-
-
-
-"""
-while True:  
-    p1 = PTs['PTF201'].getPressure()
-    v1 = PTs['PTF201'].voltage
-
-    p2 = PTs['PTF202'].getPressure()
-    v2 = PTs['PTF202'].voltage
-
-    formatedText = "PTF201: {:0>7.2f} PSI | {:0>4.2f} V".format(p1,v1)
-    print(formatedText)
-    formatedText = "PTF202: {:0>7.2f} PSI | {:0>4.2f} V".format(p2,v2)
-    print(formatedText)
-    
-    time.sleep(0.5) 
-"""
-
-
-    
-    
