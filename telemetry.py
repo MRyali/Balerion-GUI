@@ -50,7 +50,7 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
     value = reading['value']
     time =  reading['time']
     msg = "#" + name + "/" + value + "/" + time 
-    print(msg)
+    #print(msg)
     msg = str.encode(msg)
     socket.sendall(msg)
 
