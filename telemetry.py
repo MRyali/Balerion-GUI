@@ -149,11 +149,14 @@ def receiveData(socket,readings:Readings):
         raise Exception("Connection Lost")
 
     data = msg.split("#")
+    print("msg = ",msg)
 
     try:
         while data:
+            
+           
             if len(data[0]) == 24:
-                print(msg)
+                print("data= ",data[0])
                 received_reading = data[0].split("/")
 
                 name = received_reading[0]
@@ -161,6 +164,8 @@ def receiveData(socket,readings:Readings):
                 time = received_reading[2]
 
                 readings.push(name,value,time)
+            
+
             data.remove(data[0])
     except:
         print('Data processing error occured')
