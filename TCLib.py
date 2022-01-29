@@ -148,3 +148,5 @@ def refreshTCs(TC_dict: dict()):
             temp_reading = TC_dict[sensor].getTemperature()
             output = "[{}]: {:0>7.2f} F".format(sensor, temp_reading)
             print(output)
+
+refreshTCs(TC_Initialization('TC_Config_FV.ini'))
