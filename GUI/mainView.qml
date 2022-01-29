@@ -1011,88 +1011,99 @@ Item {
             }
         }
 
-        Rectangle {
-            id: rectangle
+        Item {
+            id: tab_bar
             x: 333
             y: 10
-            width: 193
-            height: 106
-            color: "#263551"
-            border.color: "#ffffff"
+            width: 200
+            height: 200
 
-            Text {
-                id: text3
-                color: "#ffffff"
-                text: qsTr("Vehicle")
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 25
-                font.capitalization: Font.AllUppercase
-                font.bold: false
-                font.family: "Arial"
-                anchors.horizontalCenter: parent.horizontalCenter
+            Rectangle {
+                id: rectangle
+                x: 0
+                y: 0
+                width: 193
+                height: 106
+                color: "#263551"
+                border.color: "#ffffff"
+
+                Text {
+                    id: text3
+                    color: "#ffffff"
+                    text: qsTr("Vehicle")
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: 25
+                    font.capitalization: Font.AllUppercase
+                    font.bold: false
+                    font.family: "Arial"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
-        }
-        Rectangle {
-            id: rectangle2
-            x: 525
-            y: 10
-            width: 193
-            height: 106
-            color: "#0c182e"
-            border.color: "#ffffff"
-            Text {
 
-                color: "#ffffff"
-                text: qsTr("GSE")
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 25
-                font.family: "Arial"
-                anchors.horizontalCenter: parent.horizontalCenter
+            Rectangle {
+                id: rectangle2
+                x: 192
+                y: 0
+                width: 193
+                height: 106
+                color: "#0c182e"
+                border.color: "#ffffff"
+                Text {
+
+                    color: "#ffffff"
+                    text: qsTr("GSE")
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: 25
+                    font.family: "Arial"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
-        }
-        Rectangle {
 
-            x: 715
-            y: 10
-            width: 193
-            height: 106
-            color: "#0c182e"
-            border.color: "#ffffff"
-            Text {
+            Rectangle {
 
-                color: "#ffffff"
-                text: qsTr("Timing")
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 25
-                font.capitalization: Font.AllUppercase
-                font.kerning: false
-                font.family: "Arial"
-                anchors.horizontalCenter: parent.horizontalCenter
+                x: 382
+                y: 0
+                width: 193
+                height: 106
+                color: "#0c182e"
+                border.color: "#ffffff"
+                Text {
+
+                    color: "#ffffff"
+                    text: qsTr("Timing")
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: 25
+                    font.capitalization: Font.AllUppercase
+                    font.kerning: false
+                    font.family: "Arial"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
-        }
-        Rectangle {
 
-            x: 908
-            y: 10
-            width: 193
-            height: 106
-            color: "#0c182e"
-            border.color: "#ffffff"
-            Text {
-                width: 78
-                height: 28
+            Rectangle {
 
-                color: "#ffffff"
-                text: qsTr("PT CALIB.")
-                anchors.verticalCenter: parent.verticalCenter
-                font.pixelSize: 25
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                wrapMode: Text.WordWrap
-                font.capitalization: Font.AllUppercase
-                font.kerning: false
-                font.family: "Arial"
-                anchors.horizontalCenter: parent.horizontalCenter
+                x: 575
+                y: 0
+                width: 193
+                height: 106
+                color: "#0c182e"
+                border.color: "#ffffff"
+                Text {
+                    width: 78
+                    height: 28
+
+                    color: "#ffffff"
+                    text: qsTr("PT CALIB.")
+                    anchors.verticalCenter: parent.verticalCenter
+                    font.pixelSize: 25
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    wrapMode: Text.WordWrap
+                    font.capitalization: Font.AllUppercase
+                    font.kerning: false
+                    font.family: "Arial"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                }
             }
         }
 
@@ -1126,7 +1137,7 @@ D{i:37}D{i:51}D{i:52}D{i:53}D{i:54}D{i:55}D{i:56}D{i:57}D{i:58}D{i:59}D{i:60}D{i
 D{i:62}D{i:63}D{i:65}D{i:66}D{i:67}D{i:68}D{i:69}D{i:70}D{i:71}D{i:72}D{i:73}D{i:74}
 D{i:75}D{i:76}D{i:64}D{i:50}D{i:2}D{i:78}D{i:79}D{i:77}D{i:81}D{i:82}D{i:83}D{i:84}
 D{i:85}D{i:86}D{i:87}D{i:88}D{i:89}D{i:90}D{i:91}D{i:92}D{i:93}D{i:94}D{i:95}D{i:96}
-D{i:80}D{i:99}D{i:100}D{i:98}D{i:97}D{i:102}D{i:101}D{i:104}D{i:103}D{i:106}D{i:105}
-D{i:108}D{i:107}D{i:1}
+D{i:80}D{i:99}D{i:100}D{i:98}D{i:97}D{i:103}D{i:102}D{i:105}D{i:104}D{i:107}D{i:106}
+D{i:109}D{i:108}D{i:101}D{i:1}
 }
 ##^##*/
