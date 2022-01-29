@@ -57,6 +57,7 @@ class TC():
         if temperature_index != -1:
             
             raw_temperature = slave_file_contents[1].strip()[temperature_index + 2:]
+            print(raw_temperature)
             self.time_stamp = timing.missionTime()
             fahrenheit_temperature = float(raw_temperature) / 1000.0 * (9.0 / 5.0) + 32.0 + self.offset
             celsius_temperature = (fahrenheit_temperature - 32.0) * (5.0 / 9.0)
