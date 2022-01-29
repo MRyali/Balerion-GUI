@@ -58,7 +58,7 @@ class PT:
         self.voltage, _ = self.ADC.interogate(self.channel)
         self.pressure = self.__volts2PSI(self.voltage)
         self.timeStamp = timing.missionTime()
-        print(self.channel,':',self.voltage)
+        #print(self.channel,':',self.voltage)
         return self.pressure
 
 def openSPI(chip, frequency):
