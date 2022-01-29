@@ -11,17 +11,70 @@ from configparser import ConfigParser
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
+class Temperature():
+    values:dict()
+
+    def __ini__(self,val:float,unit:str):
+        self.push(val,unit)
+        
+
+    def push(self,val:float,unit:str):
+        if unit == 'c':
+            self.values[unit] = val
+            self.values['f'] = self.__c2f(self.values['c'])
+            self.values['k'] = self.__c2jk(self.values['c'])
+
+        elif unit == 'f':
+            self.values[unit] = val
+            self.values['c'] = self.__f2c(self.values['f'])
+            self.values['k'] = self.__c2f(self.values['c'])
+
+
+        elif unit == 'k':
+            self.values[unit] = val
+            self.values['c'] = self.__k2c(self.values['k'])
+            self.values['f'] = self.__c2f(self.values['c'])
+
+        else :
+            print('ERROR: Wrong unit')
+
+    def get(self,unit:str):
+        if unit == 'c':
+            return self.values['c']
+            
+        elif unit == 'f':
+            return self.values['f']
+
+        elif unit == 'k':
+            return self.values['k']
+
+        else :
+            print('ERROR: Wrong unit')
+
+
+    def __c2f(self,val):
+        return 9/5*val+32
+
+    def __c2k(self,val):
+        return val + 273.15
+
+    def __f2c(self,val):
+        return 5/9*(val-32)
+
+    def __k2c(self,val):
+        return val - 273.15
+
+
 
 # Thermocouple class for reading temperatures and retriving IC ID value.
 class TC():
     """Thermocouple readings over w1 communications protocol."""
 
-    def __init__(self, id: str(), offset: float(), temp_units: str()):
+    def __init__(self, id: str(), offset: Temperature()):
         self.id = id
-        self.offset = offset # Has to be fahrenheit input.
-        self.temp_units = temp_units
-        self.temperature: float()
-        self.time_stamp: str()
+        self.offset = offset # Has to be fahrenheit input
+        self.temperature: Temperature()
+        self.timeStamp: str()
         
 
     def __tempFilePath(self):
@@ -58,28 +111,8 @@ class TC():
             
             raw_temperature = slave_file_contents[1].strip()[temperature_index + 2:]
             self.time_stamp = timing.missionTime()
-            fahrenheit_temperature = float(raw_temperature) / 1000.0 * (9.0 / 5.0) + 32.0 + self.offset
-            celsius_temperature = (fahrenheit_temperature - 32.0) * (5.0 / 9.0)
-
-            # Function returns celsius temperature by default.
-            if self.temp_units == 'c':
-                self.temperature = celsius_temperature
-                return celsius_temperature
-
-            # Function optionally returns fahrenheit temperature.
-            elif self.temp_units == 'f':
-                self.temperature = fahrenheit_temperature
-                return fahrenheit_temperature
-
-            # Function optionally returns kelven temperature.
-            elif self.temp_units == 'k':
-                kelvin_temperature = celsius_temperature + 273.15
-                self.temperature = kelvin_temperature
-                return kelvin_temperature
-
-            # Warning for invalid input.
-            else:
-                print("getTemperature() invalid unit argument, default = 'c', optional = 'f' or 'k'.")
+            c_temp = float(raw_temperature) / 1000.0 + self.offset.get('c')
+            self.temperature = Temperature(c_temp ,'c')
 
         # Warning if unable to retrieve temperature data.
         else:
@@ -121,7 +154,7 @@ def TC_Initialization(config_File_Name: str()):
         offset = __convertTemp(offset, offset_units)
         print(offset)
         # TC_init_dict[TC_name] = TC(ID, offset, temp_units)
-        TC_object = TC(ID, offset, temp_units)
+        TC_object = TC(ID, Temperature(offset,temp_units))
         TC_init_dict[TC_name] = TC_object
 
         print("[{}] has been successfully intialized.".format(TC_name))
@@ -147,6 +180,6 @@ def refreshTCs(TC_dict: dict()):
         for sensor in TC_dict:
             temp_reading = TC_dict[sensor].getTemperature()
             output = "[{}]: {:0>7.2f} F".format(sensor, temp_reading)
-            print(output)
+            #print(output)
 
 refreshTCs(TC_Initialization('TC_Config_FV.ini'))

@@ -2,6 +2,7 @@ import socket
 import select
 import time
 
+
 armedValves: dict = {}
 
 class Readings:
@@ -18,6 +19,14 @@ class Readings:
             new_reading['time']= self.PTs[PT_name].timeStamp
             new_reading['type']= 'PT'
             self.readings[PT_name] = new_reading
+
+        for TC_name in self.TCs:
+            new_reading = dict()
+            temp = self.TCs[TC_name].temperature.get('f')
+            new_reading['value']= "{:0>7.2f}".format(temp)
+            new_reading['time']= self.TCs[TC_name].timeStamp
+            new_reading['type']= 'TC'
+            self.readings[TC_name] = new_reading
         
     def refrechAll(self):
         for PT_name in self.PTs:
@@ -26,6 +35,14 @@ class Readings:
             new_reading['time']= self.PTs[PT_name].timeStamp
             new_reading['type']= 'PT'
             self.readings[PT_name] = new_reading
+
+        for TC_name in self.TCs:
+            new_reading = dict()
+            temp = self.TCs[TC_name].temperature.get('f')
+            new_reading['value']= "{:0>7.2f}".format(temp)
+            new_reading['time']= self.TCs[TC_name].timeStamp
+            new_reading['type']= 'TC'
+            self.readings[TC_name] = new_reading
 
     def push(self,name:str,value:str,time:str):
         new_reading = dict()
@@ -49,8 +66,10 @@ def connectToSever(server_ip, port):
 def sendReading(name:str, reading:dict, socket: socket.socket):
     value = reading['value']
     time =  reading['time']
+    type = reading['type']
     msg = "#" + name + "/" + value + "/" + time 
-    #print(msg)
+    if type == 'TC':
+        print(msg)
     msg = str.encode(msg)
     socket.sendall(msg)
 
