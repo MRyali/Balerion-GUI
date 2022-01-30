@@ -4,7 +4,7 @@ import threading
 import gui
 from PySide6.QtCore import QThread
 
-
+ 
 readings = telemetry.Readings({},{},{})
 
 

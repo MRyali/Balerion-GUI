@@ -38,6 +38,19 @@ Item {
         ptf203.fetchNewVal()
         ptf204.fetchNewVal()
 
+       
+        tch001.fetchNewVal()
+        tch002.fetchNewVal()
+        tch003.fetchNewVal()
+
+        tco101.fetchNewVal()
+        tco102.fetchNewVal()
+        tco103.fetchNewVal()
+        tco104.fetchNewVal()
+
+        tcf201.fetchNewVal()
+        tcf202.fetchNewVal()
+
         svh001t.update()
         svh002t.update()
         svh003t.update()
