@@ -68,8 +68,8 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
     time =  reading['time']
     type = reading['type']
     msg = "#" + name + "/" + value + "/" + time 
-    if type == 'TC':
-        print(msg)
+    #if name == 'TCH001':
+        #print(msg)
     msg = str.encode(msg)
     socket.sendall(msg)
 

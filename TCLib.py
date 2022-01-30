@@ -12,24 +12,23 @@ os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
 class Temperature():
-    values:dict()
+    
 
-    def __ini__(self,val:float,unit:str):
+    def __init__(self,val:float,unit:str):
+        self.values = {}
         self.push(val,unit)
+        
         
 
     def push(self,val:float,unit:str):
         if unit == 'c':
             self.values[unit] = val
             self.values['f'] = self.__c2f(self.values['c'])
-            self.values['k'] = self.__c2jk(self.values['c'])
-
+            self.values['k'] = self.__c2k(self.values['c'])
         elif unit == 'f':
             self.values[unit] = val
             self.values['c'] = self.__f2c(self.values['f'])
-            self.values['k'] = self.__c2f(self.values['c'])
-
-
+            self.values['k'] = self.__c2k(self.values['c'])
         elif unit == 'k':
             self.values[unit] = val
             self.values['c'] = self.__k2c(self.values['k'])
@@ -70,11 +69,12 @@ class Temperature():
 class TC():
     """Thermocouple readings over w1 communications protocol."""
 
-    def __init__(self, id: str(), offset: Temperature()):
+    def __init__(self, id: str(), offset:Temperature, ref:Temperature):
         self.id = id
         self.offset = offset # Has to be fahrenheit input
-        self.temperature: Temperature()
-        self.timeStamp: str()
+        self.temperature = Temperature(0,'c')
+        self.timeStamp = timing.missionTime()
+        self.ref = ref
         
 
     def __tempFilePath(self):
@@ -110,14 +110,19 @@ class TC():
         if temperature_index != -1:
             
             raw_temperature = slave_file_contents[1].strip()[temperature_index + 2:]
-            print(raw_temperature)
-            self.time_stamp = timing.missionTime()
-            c_temp = float(raw_temperature) / 1000.0 + self.offset.get('c')
-            self.temperature = Temperature(c_temp ,'c')
+            self.timeStamp = timing.missionTime()
+            c_temp = float(raw_temperature) / 1000.0 + self.offset.get('c') - self.ref.get('c')
+            #print(c_temp)
+            self.temperature.push(c_temp ,'c')
+            
 
         # Warning if unable to retrieve temperature data.
         else:
             print("Unable to get temperature reading at" + str(self.sensor_index) + ".")
+
+        
+        
+
 
 def __convertTemp(offset: float(), offset_units: str()):
     """Converts any unit into fahrenheit."""
@@ -152,11 +157,12 @@ def TC_Initialization(config_File_Name: str()):
         port = TC_config[TC_name]['port']
         ID = TC_port_ID[port]['id']
 
-        offset = __convertTemp(offset, offset_units)
-        print(offset)
+        #offset = __convertTemp(offset, offset_units)
+        #print(offset)
         # TC_init_dict[TC_name] = TC(ID, offset, temp_units)
-        TC_object = TC(ID, Temperature(offset,temp_units))
-        TC_init_dict[TC_name] = TC_object
+        #temp = Temperature(offset,offset_units)
+        
+        TC_init_dict[TC_name] = TC(ID, Temperature(offset,offset_units),Temperature(0,offset_units))
 
         print("[{}] has been successfully intialized.".format(TC_name))
 
@@ -177,10 +183,12 @@ convertTime(15)
 
 
 def refreshTCs(TC_dict: dict()):
+    
     while True:
         for sensor in TC_dict:
-            temp_reading = TC_dict[sensor].getTemperature()
-            output = "[{}]: {:0>7.2f} F".format(sensor, temp_reading)
+            #rint('yoooooo')
+            TC_dict[sensor].getTemperature()
+            #output = "[{}]: {:0>7.2f} F".format(sensor, temp_reading)
             #print(output)
+            #print('yoooooo222')
 
-refreshTCs(TC_Initialization('TC_Config_FV.ini'))
