@@ -81,7 +81,7 @@ class Bridge(QObject):
 
     @Slot()
     def sendCommand(self):
-        telemetry.sendCommand(self.guiReadings)
+        telemetry.appendCommand(self.guiReadings)
         
 
 
