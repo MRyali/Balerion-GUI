@@ -73,6 +73,36 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
     msg = str.encode(msg)
     socket.sendall(msg)
 
+
+def getCommand(serverSocket:socket,FV_Reandings:Readings):
+    serverSocket
+    msg = socket.recv(1024)
+    msg = msg.decode("utf-8")
+
+    data = msg.split("#")
+    print("msg = ",msg)
+
+    try:
+        while data:
+            
+            print("data= ",data[0])
+            received_reading = data[0].split("/")
+
+            name = received_reading[0]
+            value = received_reading[1]
+            time = received_reading[2]
+
+            print(data)
+
+            FV_Reandings.push(name,value,time)
+            
+
+            data.remove(data[0])
+    except:
+        print('Data processing error occured')
+
+
+
 def client_IO(server_socket:socket.socket,frequency:float,client_readings:Readings):
 
     timeout = 0.01 #seconds
@@ -85,18 +115,17 @@ def client_IO(server_socket:socket.socket,frequency:float,client_readings:Readin
             # attempt reading/writing
             for reading_name in client_readings.readings:
                 sendReading(reading_name,client_readings.readings[reading_name],server_socket)
-                """
+            
                 readable = select.select([socket], [], [], timeout)
                 if readable[0]:
-                    read(socket)
-                """
+                    getCommand(socket)
+                
                 time.sleep(period)
         except:
             # if exception rises close connection and try to reconnect
             socket.close
             print('Client lost connection to server')
             break
-
 
 
 def client_coms(server: dict, frequency:float, client_readings: Readings):
@@ -153,6 +182,7 @@ def server_IO(socket,readings:Readings):
     while True:
         try:
             receiveData(socket,readings)
+            sendCommand(socket)
         except:
             break
 
@@ -190,18 +220,35 @@ def receiveData(socket,readings:Readings):
         print('Data processing error occured')
             
 
-def sendCommand(inReadings:Readings):
+commands:list = {}
+
+def appendCommand(inReadings:Readings):
     for valve in armedValves:
         if armedValves[valve]=='ARMED':
+            
+            
             reading = inReadings.readings[valve]
             state = reading['value']
-            
+
             if state == "OPENED":
-                inReadings.push(valve,"CLOSED","00000")
+                
+                #inReadings.push(valve,"CLOSES","00000")
+                msg = "#" + valve + "/" + "CLOSE" + "/" + "00000.00" 
                 print("Set",valve,"to CLOSED")
             else:
-                inReadings.push(valve,"OPENED","00000")
+                #inReadings.push(valve,"OPENED","00000")
+                msg = "#" + valve + "/" + "OPENES" + "/" + "00000.00"  
                 print("Set",valve,"to OPENED")
+
+            commands.append(msg)
+
+
+def sendCommand(FV_Socket:socket):
+    while commands:
+        msg = commands.pop()
+        msg = str.encode(msg)
+        FV_Socket.sendall(msg)
+
 
    
 
