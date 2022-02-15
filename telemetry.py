@@ -75,17 +75,19 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
 
 
 def getCommand(serverSocket:socket,FV_Reandings:Readings):
-    serverSocket
-    msg = socket.recv(1024)
+    
+    print("getting command")
+    msg = serverSocket.recv(1024)
     msg = msg.decode("utf-8")
 
     data = msg.split("#")
-    print("msg = ",msg)
+    #print("msg = ",msg)
 
-    try:
-        while data:
+    
+    while data:
+        #print("data= ",data[0])
+        if len(data[0]) == 23:
             
-            print("data= ",data[0])
             received_reading = data[0].split("/")
 
             name = received_reading[0]
@@ -93,13 +95,14 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
             time = received_reading[2]
 
             print(data)
-
-            FV_Reandings.push(name,value,time)
+            if value == 'OPENES':
+                FV_Reandings.push(name,'OPENED',time)
+            elif value == 'CLOSES':
+                FV_Reandings.push(name,'CLOSED',time)
             
 
-            data.remove(data[0])
-    except:
-        print('Data processing error occured')
+        data.remove(data[0])
+    
 
 
 
@@ -115,17 +118,19 @@ def client_IO(server_socket:socket.socket,frequency:float,client_readings:Readin
             # attempt reading/writing
             for reading_name in client_readings.readings:
                 sendReading(reading_name,client_readings.readings[reading_name],server_socket)
-            
-                readable = select.select([socket], [], [], timeout)
-                if readable[0]:
-                    getCommand(socket)
-                
+                #print('got here')
                 time.sleep(period)
+                
         except:
             # if exception rises close connection and try to reconnect
             socket.close
             print('Client lost connection to server')
             break
+        
+        readable = select.select([server_socket], [], [], timeout)
+        if readable[0]:
+            #print('got something')
+            getCommand(server_socket,client_readings)
 
 
 def client_coms(server: dict, frequency:float, client_readings: Readings):
