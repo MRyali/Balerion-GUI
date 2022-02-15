@@ -13,13 +13,10 @@ os.system('modprobe w1-therm')
 
 class Temperature():
     
-
     def __init__(self,val:float,unit:str):
         self.values = {}
         self.push(val,unit)
         
-        
-
     def push(self,val:float,unit:str):
         if unit == 'c':
             self.values[unit] = val
@@ -115,7 +112,6 @@ class TC():
             #print(c_temp)
             self.temperature.push(c_temp ,'c')
             
-
         # Warning if unable to retrieve temperature data.
         else:
             print("Unable to get temperature reading at" + str(self.sensor_index) + ".")

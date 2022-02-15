@@ -333,14 +333,14 @@ Item {
                     }
 
                     Gage {
-                        id: tcf104
-                        name: "TCF104"
+                        id: tco104
+                        name: "TCO104"
                         unit: "ºC"
                     }
                 }
                 Gage {
-                    id: tcf103
-                    name: "TCF103"
+                    id: tco103
+                    name: "TCO103"
                     x: 815
                     y: 646
                     width: 176

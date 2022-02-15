@@ -1,7 +1,8 @@
 import socket
 import select
 import time
-
+from PTLib import refreshPTs
+import timing
 
 armedValves: dict = {}
 
@@ -12,21 +13,7 @@ class Readings:
         self.TCs = TC_dict
         self.SVs = SV_dict
         self.readings = dict()
-
-        for PT_name in self.PTs:
-            new_reading = dict()
-            new_reading['value']= "{:0>7.2f}".format(self.PTs[PT_name].pressure)
-            new_reading['time']= self.PTs[PT_name].timeStamp
-            new_reading['type']= 'PT'
-            self.readings[PT_name] = new_reading
-
-        for TC_name in self.TCs:
-            new_reading = dict()
-            temp = self.TCs[TC_name].temperature.get('f')
-            new_reading['value']= "{:0>7.2f}".format(temp)
-            new_reading['time']= self.TCs[TC_name].timeStamp
-            new_reading['type']= 'TC'
-            self.readings[TC_name] = new_reading
+        self.refrechAll()
         
     def refrechAll(self):
         for PT_name in self.PTs:
@@ -109,7 +96,7 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
 def client_IO(server_socket:socket.socket,frequency:float,client_readings:Readings):
 
     timeout = 0.01 #seconds
-    period = 1/frequency - timeout
+    period = 1/frequency
 
     print("Starting data stream...")
     while True:
@@ -203,14 +190,14 @@ def receiveData(socket,readings:Readings):
         raise Exception("Connection Lost")
 
     data = msg.split("#")
-    print("msg = ",msg)
+    #print("msg = ",msg)
 
     try:
         while data:
             
            
             if len(data[0]) == 24:
-                print("data= ",data[0])
+                #print("data= ",data[0])
                 received_reading = data[0].split("/")
 
                 name = received_reading[0]
@@ -225,7 +212,7 @@ def receiveData(socket,readings:Readings):
         print('Data processing error occured')
             
 
-commands:list = {}
+commands:list = []
 
 def appendCommand(inReadings:Readings):
     for valve in armedValves:
@@ -238,21 +225,26 @@ def appendCommand(inReadings:Readings):
             if state == "OPENED":
                 
                 #inReadings.push(valve,"CLOSES","00000")
-                msg = "#" + valve + "/" + "CLOSE" + "/" + "00000.00" 
+                msg = "#" + valve + "/" + "CLOSES" + "/" + timing.missionTime() 
+                inReadings.push(valve,"CLOSED",time)
                 print("Set",valve,"to CLOSED")
             else:
                 #inReadings.push(valve,"OPENED","00000")
-                msg = "#" + valve + "/" + "OPENES" + "/" + "00000.00"  
+                msg = "#" + valve + "/" + "OPENES" + "/" + timing.missionTime()
                 print("Set",valve,"to OPENED")
+                inReadings.push(valve,"OPENED",time)
 
             commands.append(msg)
 
 
 def sendCommand(FV_Socket:socket):
     while commands:
+        
         msg = commands.pop()
         msg = str.encode(msg)
         FV_Socket.sendall(msg)
+
+        print(msg)
 
 
    
