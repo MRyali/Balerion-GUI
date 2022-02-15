@@ -1,7 +1,7 @@
 import socket
 import select
 import time
-from PTLib import refreshPTs
+
 import timing
 
 armedValves: dict = {}
@@ -211,6 +211,9 @@ def receiveData(socket,readings:Readings):
                 time = received_reading[2]
 
                 readings.push(name,value,time)
+
+                if name[0:2]=='SV':
+                    print(data[0]+'yooo?')
             
 
             data.remove(data[0])
@@ -228,16 +231,16 @@ def appendCommand(inReadings:Readings):
             reading = inReadings.readings[valve]
             state = reading['value']
 
-            if state == "OPENED":
+            if state == "OPENED_":
                 
                 #inReadings.push(valve,"CLOSES","00000")
-                msg = "#" + valve + "/" + "CLOSES" + "/" + timing.missionTime() 
-                inReadings.push(valve,"CLOSED",time)
+                msg = "#" + valve + "/" + "CLOSE" + "/" + timing.missionTime() 
+                #inReadings.push(valve,"CLOSED",time)
                 print("Set",valve,"to CLOSED")
             else:
                 #inReadings.push(valve,"OPENED","00000")
-                msg = "#" + valve + "/" + "OPENES" + "/" + timing.missionTime()
-                print("Set",valve,"to OPENED")
+                msg = "#" + valve + "/" + "OPEN_" + "/" + timing.missionTime()
+                #print("Set",valve,"to OPENED")
                 inReadings.push(valve,"OPENED",time)
 
             commands.append(msg)

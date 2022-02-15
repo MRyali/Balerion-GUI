@@ -56,13 +56,13 @@ class Bridge(QObject):
         #return true if valve is open
         try:
             reading = self.guiReadings.readings[valveName]
-            if reading['value'] == 'OPENED':
+            if reading['value'] == 'OPENED_':
                 return True
             else:
                 return False
 
         except:
-            self.guiReadings.push(valveName,'OPENED','000000')
+            self.guiReadings.push(valveName,'OPENED_','000000')
             return False
 
     
