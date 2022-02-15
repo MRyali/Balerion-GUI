@@ -21,7 +21,6 @@ FV_readings = telemetry.Readings(PTs,TCs,[])
 
 with concurrent.futures.ThreadPoolExecutor() as executor:
     executor.submit(PTLib.refreshPTs,PTs,50) #PT interogation thread
-    
     executor.submit(TCLib.refreshTCs,TCs)
     executor.submit(telemetry.client_coms,server,50,FV_readings)
 
