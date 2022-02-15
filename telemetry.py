@@ -32,6 +32,7 @@ class Readings:
             self.readings[TC_name] = new_reading
 
     def push(self,name:str,value:str,time:str):
+        
         new_reading = dict()
         new_reading['value']= value
         new_reading['time']= time
@@ -53,8 +54,13 @@ def connectToSever(server_ip, port):
 def sendReading(name:str, reading:dict, socket: socket.socket):
     value = reading['value']
     time =  reading['time']
-    type = reading['type']
-    msg = "#" + name + "/" + value + "/" + time 
+    readingType = reading['type']
+    
+    msg = "#" + name + "/" + value + "/" + time
+    
+    if readingType == 'SV':
+        print(msg)
+     
     #if name == 'TCH001':
         #print(msg)
     msg = str.encode(msg)
@@ -73,7 +79,7 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
     
     while data:
         #print("data= ",data[0])
-        if len(data[0]) == 23:
+        if len(data[0]) == 22:
             
             received_reading = data[0].split("/")
 
@@ -81,11 +87,11 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
             value = received_reading[1]
             time = received_reading[2]
 
-            print(data)
-            if value == 'OPENES':
-                FV_Reandings.push(name,'OPENED',time)
-            elif value == 'CLOSES':
-                FV_Reandings.push(name,'CLOSED',time)
+            print(received_reading)
+            if value == 'OPEN_':
+                FV_Reandings.push(name,'OPENED_',time)
+            elif value == 'CLOSE':
+                FV_Reandings.push(name,'CLOSED_',time)
             
 
         data.remove(data[0])
