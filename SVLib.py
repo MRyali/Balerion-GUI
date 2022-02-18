@@ -4,7 +4,7 @@ GPIO.setmode(GPIO.BCM)
 
 class Valve():
 
-    def __ini__(self,pin:int):
+    def __init__(self,pin:int):
         self.pin = pin
         GPIO.setup(pin, GPIO.OUT)
 
