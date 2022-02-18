@@ -1,7 +1,7 @@
 import socket
 import select
 import time
-import SVLib
+
 
 import timing
 
@@ -90,10 +90,10 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
 
             print(received_reading)
             if value == 'OPEN_':
-                SVLib.testValve.openValve()
+                testValve.openValve()
                 FV_Reandings.push(name,'OPENED_',time)
             elif value == 'CLOSE':
-                SVLib.testValve.openValve()
+                testValve.openValve()
                 FV_Reandings.push(name,'CLOSED_',time)
             
 
