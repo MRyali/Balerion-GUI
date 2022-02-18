@@ -14,4 +14,8 @@ class Valve():
     def closeValve(self):
         GPIO.output(pin, GPIO.LOW)
 
-testValve = Valve(17)
+
+def initialiseValves():
+    valves = dict()
+    valves['SVH001'] = Valve(17)
+    return valves

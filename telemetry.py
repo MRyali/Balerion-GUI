@@ -1,7 +1,6 @@
 import socket
 import select
 import time
-from SVLib import testValve
 
 import timing
 
@@ -39,6 +38,15 @@ class Readings:
         new_reading['time']= time
         new_reading['type']= name[0:2]
         self.readings[name] = new_reading
+
+    def execute(self,name:str,value:str,time:str):
+
+        if value == 'OPEN_':
+            self.SVs[name].openValve()
+            self.push(name,'OPENED_',time)
+        elif value == 'CLOSE':
+            self.SVs[name].openValve()
+            self.push(name,'CLOSED_',time)
 
 
 
@@ -88,13 +96,10 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
             value = received_reading[1]
             time = received_reading[2]
 
+            FV_Reandings.execute(name,value,time)
+
             print(received_reading)
-            if value == 'OPEN_':
-                testValve.openValve()
-                FV_Reandings.push(name,'OPENED_',time)
-            elif value == 'CLOSE':
-                testValve.openValve()
-                FV_Reandings.push(name,'CLOSED_',time)
+            
             
 
         data.remove(data[0])
