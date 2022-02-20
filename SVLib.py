@@ -9,10 +9,11 @@ class Valve():
         GPIO.setup(pin, GPIO.OUT)
 
     def openValve(self):
-        GPIO.output(pin, GPIO.HIGH)
+        GPIO.output(self.pin, GPIO.HIGH)
 
     def closeValve(self):
-        GPIO.output(pin, GPIO.LOW)
+        print("getting command 222222")
+        GPIO.output(self.pin, GPIO.LOW)
 
 
 def initialiseValves():
