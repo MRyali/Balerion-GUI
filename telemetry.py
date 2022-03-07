@@ -71,7 +71,7 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
     
     msg = "#" + name + "/" + value + "/" + time
     
-    if readingType == 'SV':
+    if name == 'PTH001':
         print(msg)
      
     #if name == 'TCH001':
