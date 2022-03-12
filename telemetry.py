@@ -6,6 +6,11 @@ import timing
 
 armedValves: dict = {}
 
+sourceFile = open('readings'+timing.missionTime()+'.txt', 'w')
+
+
+
+
 class Readings:
 
     def __init__(self,PT_dict:dict,TC_dict:dict,SV_dict:dict):
@@ -171,7 +176,7 @@ def openSocket():
     # Reserves a socket on the server machine
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
-    server_ip = '172.20.10.3' #socket.gethostname()
+    server_ip = '192.168.1.15' #socket.gethostname()
     port = 7234
     s.bind((server_ip,port))
 
@@ -216,6 +221,7 @@ def receiveData(socket,readings:Readings):
            
             if len(data[0]) == 24:
                 #print("data= ",data[0])
+                
                 received_reading = data[0].split("/")
 
                 name = received_reading[0]
@@ -224,8 +230,9 @@ def receiveData(socket,readings:Readings):
 
                 readings.push(name,value,time)
 
-                if name[0:2]=='SV':
-                    print(data[0]+'yooo?')
+                if name =='PTH001':
+                    print(data[0], file = sourceFile, flush=True)
+                    print(data[0])
             
 
             data.remove(data[0])
