@@ -6,13 +6,16 @@ class Valve():
 
     def __init__(self,pin:int):
         self.pin = pin
+        self.isOpen = False
         GPIO.setup(pin, GPIO.OUT)
 
     def openValve(self):
-        GPIO.output(pin, GPIO.HIGH)
+        self.isOpen = True
+        GPIO.output(self.pin, GPIO.HIGH)
 
     def closeValve(self):
-        GPIO.output(pin, GPIO.LOW)
+        self.isOpen = False
+        GPIO.output(self.pin, GPIO.LOW)
 
 
 def initialiseValves():
