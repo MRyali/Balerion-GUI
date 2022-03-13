@@ -76,7 +76,7 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
     
     msg = "#" + name + "/" + value + "/" + time
     
-    if name == 'PTH001':
+    if readingType == 'SV':
         print(msg)
      
     #if name == 'TCH001':
@@ -176,8 +176,12 @@ def openSocket():
     # Reserves a socket on the server machine
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
-    server_ip = '192.168.1.15' #socket.gethostname()
-    port = 7234
+    # server_ip = '172.20.10.3' #socket.gethostname()
+    parseFile("ipconfig.txt")
+    server_ip = getIP()
+    port = getPort()
+
+    print(f"IP adress: {server_ip} Port {port}")
     s.bind((server_ip,port))
 
     print(f"Server Online. IP adress: {server_ip} Port {port}")
@@ -274,7 +278,41 @@ def sendCommand(FV_Socket:socket):
 
         print(msg)
 
+config = dict()
 
+def parseFile(filepath):
+    fd = open(filepath, "r")
+    
+    if fd == -1:
+        print("Cannot open "+ filepath)
+    count = 0
+    while True:
+        line = fd.readline()
+        if len(line) == 0:
+            break
+        x = line.split("=", 2)
+        if len(x) != 2:
+            print("Error: line " + str(count) + " is invalid")
+        else:
+            config[x[0]]= x[1]
+        count = count+1
+
+    if len(config) == 0:
+        print("Error: " + filepath + "contains no valid entries")
+
+def getIP():
+    if("IP" in config):
+        return config.get("IP") 
+    else:
+        return "Error: IP not found in config"
+
+def getPort():
+    if("port" in config):
+        return int(config.get("port"))
+    else:
+        print("Error: port not found in config")
+        return -1
+ 
    
 
                 
