@@ -45,16 +45,12 @@ class Readings:
         self.readings[name] = new_reading
 
     def execute(self,name:str,value:str,time:str):
-        print("getting command " + name)
+
         if value == 'OPEN_':
-            print("getting command 111111")
             self.SVs[name].openValve()
-            
             self.push(name,'OPENED_',time)
         elif value == 'CLOSE':
-            
-            self.SVs[name].closeValve()
-            
+            self.SVs[name].openValve()
             self.push(name,'CLOSED_',time)
 
 
@@ -86,8 +82,8 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
 
 
 def getCommand(serverSocket:socket,FV_Reandings:Readings):
-    print("getting command")
     
+    print("getting command")
     msg = serverSocket.recv(1024)
     msg = msg.decode("utf-8")
 
@@ -104,7 +100,7 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
             name = received_reading[0]
             value = received_reading[1]
             time = received_reading[2]
-            
+
             FV_Reandings.execute(name,value,time)
 
             print(received_reading)
