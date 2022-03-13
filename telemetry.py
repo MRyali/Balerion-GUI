@@ -6,7 +6,7 @@ import timing
 
 armedValves: dict = {}
 
-sourceFile = open('readings'+timing.missionTime()+'.txt', 'w')
+sourceFile = open('data_logs/readings'+timing.missionTime()+'.txt', 'w')
 
 
 
