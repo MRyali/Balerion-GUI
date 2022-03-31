@@ -41,6 +41,7 @@ class Valve():
     def __init__(self, serial_port:serial.Serial(),pin:int):
         self.pin = pin
         self.isOpen = False
+        self.serial_port = serial_port
         
 
     def openValve(self):
