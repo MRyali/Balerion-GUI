@@ -5,12 +5,7 @@ import time
 import timing
 
 armedValves: dict = {}
-
-sourceFile = open('data_logs/readings'+timing.missionTime()+'.txt', 'w')
-
-
-
-
+sourceFile = open("data_logs/" + str(timing.missionTime) +' log.txt', 'w')
 class Readings:
 
     def __init__(self,PT_dict:dict,TC_dict:dict,SV_dict:dict):
@@ -23,10 +18,12 @@ class Readings:
     def refrechAll(self):
         for PT_name in self.PTs:
             new_reading = dict()
-            new_reading['value']= "{:0>7.2f}".format(self.PTs[PT_name].pressure)
-            new_reading['time']= self.PTs[PT_name].timeStamp
-            new_reading['type']= 'PT'
-            self.readings[PT_name] = new_reading
+            self.readings[PT_name]['value']= "{:0>7.2f}".format(self.PTs[PT_name].pressure)
+            self.readings[PT_name]['time']= self.PTs[PT_name].timeStamp
+            self.readings[PT_name]['type']= 'PT'
+            
+
+
 
         for TC_name in self.TCs:
             new_reading = dict()
@@ -45,12 +42,16 @@ class Readings:
         self.readings[name] = new_reading
 
     def execute(self,name:str,value:str,time:str):
-
+        print("getting command " + name)
         if value == 'OPEN_':
+            print("getting command 111111")
             self.SVs[name].openValve()
+            
             self.push(name,'OPENED_',time)
         elif value == 'CLOSE':
-            self.SVs[name].openValve()
+            
+            self.SVs[name].closeValve()
+            
             self.push(name,'CLOSED_',time)
 
 
@@ -82,8 +83,8 @@ def sendReading(name:str, reading:dict, socket: socket.socket):
 
 
 def getCommand(serverSocket:socket,FV_Reandings:Readings):
-    
     print("getting command")
+    
     msg = serverSocket.recv(1024)
     msg = msg.decode("utf-8")
 
@@ -100,7 +101,7 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
             name = received_reading[0]
             value = received_reading[1]
             time = received_reading[2]
-
+            
             FV_Reandings.execute(name,value,time)
 
             print(received_reading)
@@ -177,7 +178,7 @@ def openSocket():
     server_ip = getIP()
     port = getPort()
 
-    print(f"IP adress: {server_ip} Port {port}")
+    print(f"IP adress: '{server_ip}' Port {port}")
     s.bind((server_ip,port))
 
     print(f"Server Online. IP adress: {server_ip} Port {port}")
@@ -218,7 +219,6 @@ def receiveData(socket,readings:Readings):
     try:
         while data:
             
-           
             if len(data[0]) == 24:
                 #print("data= ",data[0])
                 
@@ -230,9 +230,13 @@ def receiveData(socket,readings:Readings):
 
                 readings.push(name,value,time)
 
-                if name =='PTH001':
-                    print(data[0], file = sourceFile, flush=True)
-                    print(data[0])
+                #if name =='PTH001':
+                #print ("Time: " + time)
+                #logStamp = timing.getTimeDiffInSeconds(originTime, time)
+                print (name + " " + value + " " + timing.getTimeDiffInSeconds(time) , file = sourceFile, flush = True)
+                #print(data[0], file = sourceFile, flush=True)
+                if(name=='TCH001'):
+                    print(name + " " + value + " " + timing.getTimeDiffInSeconds(time), flush = True)
             
 
             data.remove(data[0])
@@ -284,9 +288,11 @@ def parseFile(filepath):
     count = 0
     while True:
         line = fd.readline()
+        line = line.replace("\n", "")
         if len(line) == 0:
             break
         x = line.split("=", 2)
+        # print("line: " + x[0] + ":" + x[1]) #debug
         if len(x) != 2:
             print("Error: line " + str(count) + " is invalid")
         else:
