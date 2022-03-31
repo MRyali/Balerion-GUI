@@ -1,0 +1,66 @@
+-define aborts (.ini, .JSON)
+Ex:
+abort{
+    Condition_1 {
+        reading: TCH001
+        condition_Type: Max
+        condition_Value: 50ºC
+    }
+    Command_1 {
+        actuator: SVH001
+        state: open
+    }
+}
+
+
+class Abort {
+
+    _ini_(.JSON):{
+        self.condition
+        self.command
+    }
+
+    def checkConditions {
+        if (self.condition==True){
+            execute self.command
+        }
+    }
+
+
+}
+
+class Condition {
+    def __init__(type, treshold, sensor){
+        self.type
+        ...
+
+        ...
+    }
+
+    def checkStatus(){
+        if (Max){
+            if sensor['value'] > treshold{
+                return True
+            }
+        }
+        if (Min){
+            if sensor['value'] < treshold{
+                return True
+            }
+        }
+
+    }
+}
+
+
+initializer(.JSON){
+
+    aborts:list 
+    return aborts #(dictionary of all the possible aborts)
+}
+
+checking function (aborts){
+    while(True){
+        keep checking if abort is triggered
+    }
+}
