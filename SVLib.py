@@ -46,13 +46,13 @@ class Valve():
 
     def openValve(self):
         self.isOpen = True
-        send_data(self.serial_port,"#P01_LOW__\n")
-        print("#P01_LOW__\n")
+        send_data(self.serial_port,"#P10_LOW__\n")
+        print("#P10_LOW__\n")
 
     def closeValve(self):
         self.isOpen = False
-        send_data(self.serial_port,"#P01_HIGH_\n")
-        print("#P01_HIGH_\n")
+        send_data(self.serial_port,"#P10_HIGH_\n")
+        print("#P10_HIGH_\n")
 
 
 def initialiseValves():
