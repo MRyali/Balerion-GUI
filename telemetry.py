@@ -18,10 +18,10 @@ class Readings:
     def refrechAll(self):
         for PT_name in self.PTs:
             new_reading = dict()
-            self.readings[PT_name]['value']= "{:0>7.2f}".format(self.PTs[PT_name].pressure)
-            self.readings[PT_name]['time']= self.PTs[PT_name].timeStamp
-            self.readings[PT_name]['type']= 'PT'
-            
+            new_reading[PT_name]['value']= "{:0>7.2f}".format(self.PTs[PT_name].pressure)
+            new_reading[PT_name]['time']= self.PTs[PT_name].timeStamp
+            new_reading[PT_name]['type']= 'PT'
+            self.readings[PT_name] = new_reading
 
 
 
