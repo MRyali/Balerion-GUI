@@ -5,7 +5,7 @@ import time
 import timing
 
 armedValves: dict = {}
-sourceFile = open("Apr 3_" + str(timing.missionTime) +'_log.txt', 'w')
+sourceFile = open("data_logs/Apr 3_" + str(timing.missionTime()) +'_log.txt', 'w')
 class Readings:
 
     def __init__(self,PT_dict:dict,TC_dict:dict,SV_dict:dict):
@@ -233,7 +233,7 @@ def receiveData(socket,readings:Readings):
                 #if name =='PTH001':
                 #print ("Time: " + time)
                 #logStamp = timing.getTimeDiffInSeconds(originTime, time)
-                print (name + " " + value + " " + timing.getTimeDiffInSeconds(time) , file = sourceFile, flush = True)
+                print (name + " " + value + " " + timing.missionTime(time) , file = sourceFile, flush = True)
                 #print(data[0], file = sourceFile, flush=True)
                 if(name=='TCH001'):
                     print(name + " " + value + " " + timing.getTimeDiffInSeconds(time), flush = True)
