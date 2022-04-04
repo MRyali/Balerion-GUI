@@ -233,10 +233,10 @@ def receiveData(socket,readings:Readings):
                 #if name =='PTH001':
                 #print ("Time: " + time)
                 #logStamp = timing.getTimeDiffInSeconds(originTime, time)
-                print (name + " " + value + " " + timing.missionTime(time) , file = sourceFile, flush = True)
+                print (name + " " + value + " " + timing.missionTime() , file = sourceFile, flush = True)
                 #print(data[0], file = sourceFile, flush=True)
-                if(name=='TCH001'):
-                    print(name + " " + value + " " + timing.getTimeDiffInSeconds(time), flush = True)
+                
+                print(name + " " + value + " " + timing.missionTime(), flush = True)
             
 
             data.remove(data[0])
