@@ -13,7 +13,7 @@ systemName = 'FV'
 
 PTs = PTLib.PTs_init("PTs_Config_FV.ini")
 TCs = TCLib.TC_Initialization('TC_Config_FV.ini')
-SVs = SVLib.initialiseValves()
+SVs = SVLib.initialiseValves('SV_config.ini')
 
 telemetry.parseFile("ipconfig.txt")
 
