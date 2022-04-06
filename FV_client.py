@@ -17,7 +17,7 @@ SVs = SVLib.initialiseValves()
 
 telemetry.parseFile("ipconfig.txt")
 
-server={'IP':telemetry.getIP,'port':7234}
+server={'IP':'172.20.10.3','port':7234}
 
 FV_readings = telemetry.Readings(PTs,TCs,SVs)
 
