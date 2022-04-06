@@ -45,13 +45,13 @@ class Valve():
         
 
     def openValve(self):
-        msg = "#P"+self.pin+"/LOW__\n"
+        msg = "#S"+self.pin+"/LOW__\n"
         send_data(self.serial_port,msg)
         print(msg)
         self.isOpen = True
 
     def closeValve(self):
-        msg = "#P"+self.pin+"/HIGH_\n"
+        msg = "#S"+self.pin+"/HIGH_\n"
         send_data(self.serial_port,msg)
         print(msg)
         self.isOpen = False
