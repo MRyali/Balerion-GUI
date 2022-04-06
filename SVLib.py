@@ -60,7 +60,7 @@ class Valve():
 def initialiseValves():
     ser = set_up_serial('/dev/ttyACM0')
     valves = dict()
-    valves['SVH001'] = Valve(ser,'10')
-    valves['SVH002'] = Valve(ser,'11')
-    valves['SVH003'] = Valve(ser,'12')
+    valves['SVH001'] = Valve(ser,'22')
+    valves['SVH002'] = Valve(ser,'23')
+    valves['SVH003'] = Valve(ser,'24')
     return valves
