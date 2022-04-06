@@ -1,6 +1,7 @@
 
 import serial 
 import time
+from configparser import ConfigParser
 
 def set_up_serial(port):
     """
@@ -57,10 +58,16 @@ class Valve():
         self.isOpen = False
 
 
-def initialiseValves():
+def initialiseValves(configFile:str):
+
     ser = set_up_serial('/dev/ttyACM0')
+
+    SVsCfg = ConfigParser()
+    SVsCfg.read(configFile)
     valves = dict()
-    valves['SVH001'] = Valve(ser,'22')
-    valves['SVH002'] = Valve(ser,'23')
-    valves['SVH003'] = Valve(ser,'24')
+
+    for SV_name in SVsCfg.sections():
+        SV_port = SVsCfg[SV_name]['port']
+        valves[SV_name] = Valve(ser,SV_port)
+
     return valves
