@@ -15,7 +15,9 @@ PTs = PTLib.PTs_init("PTs_Config_FV.ini")
 TCs = TCLib.TC_Initialization('TC_Config_FV.ini')
 SVs = SVLib.initialiseValves()
 
-server={'IP':'192.168.1.1','port':7234}
+telemetry.parseFile("ipconfig.txt")
+
+server={'IP':telemetry.getIP,'port':7234}
 
 FV_readings = telemetry.Readings(PTs,TCs,SVs)
 
