@@ -17,7 +17,7 @@ SVs = SVLib.initialiseValves()
 
 telemetry.parseFile("ipconfig.txt")
 
-server={'IP':telemetry.getIP,'port':7234}
+server={'IP':str(telemetry.getIP),'port':7234}
 
 
 print("'" + telemetry.getIP() + "'")
