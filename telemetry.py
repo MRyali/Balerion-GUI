@@ -60,7 +60,9 @@ class Readings:
 def connectToSever(server_ip, port):
     # called by client to connect to server
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((server_ip, port))
+    parseFile("ipconfig.txt")
+    
+    s.connect((getIP, port))
     s.setblocking(0)
     return s
 
