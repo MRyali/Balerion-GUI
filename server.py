@@ -25,6 +25,8 @@ newWorker.start()
 
 # a test comment
 
+# some crazy stuff
+
 gui.guiThreadFunc(readings) 
 
 
