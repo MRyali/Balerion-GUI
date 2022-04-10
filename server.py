@@ -23,6 +23,8 @@ newWorker = MyWorker()
 newWorker.Myreads = readings
 newWorker.start()
 
+# a test commet
+
 gui.guiThreadFunc(readings) 
 
 
