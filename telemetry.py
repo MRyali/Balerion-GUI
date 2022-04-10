@@ -5,7 +5,7 @@ import time
 import timing
 
 armedValves: dict = {}
-sourceFile = open("data_logs/Apr 3_" + str(timing.missionTime()) +'_log.txt', 'w')
+sourceFile = open("data_logs/Apr 10_" + str(timing.missionTime()) +'_log.txt', 'w')
 class Readings:
 
     def __init__(self,PT_dict:dict,TC_dict:dict,SV_dict:dict):
