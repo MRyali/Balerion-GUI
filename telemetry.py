@@ -109,7 +109,7 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
 
 def client_IO(server_socket:socket.socket,frequency:float,client_readings:Readings):
 
-    timeout = 0.001 #seconds
+    timeout = 0.01 #seconds
     period = 1/frequency
 
     print("Starting data stream...")
