@@ -5,7 +5,7 @@ import time
 import timing
 
 armedValves: dict = {}
-sourceFile = open("data_logs/Engine_Flow_1_200_PSI" + str(timing.missionTime()) +'_log.txt', 'w')
+sourceFile = open("data_logs/TP600T02_" + str(timing.missionTime()) +'_log.txt', 'w')
 class Readings:
 
     def __init__(self,PT_dict:dict,TC_dict:dict,SV_dict:dict):
@@ -109,7 +109,7 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
 
 def client_IO(server_socket:socket.socket,frequency:float,client_readings:Readings):
 
-    timeout = 0.01 #seconds
+    timeout = 0.001 #seconds
     period = 1/frequency
 
     print("Starting data stream...")
