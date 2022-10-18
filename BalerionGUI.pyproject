@@ -1,3 +1,3 @@
 {
-    "files": ["GUI/mainView.qml","TC_Config_FV.ini","gui.py","mainView.qml","timing.py","propagateTCs.py","TC_Port_ID.ini","PTLib.py","Images/resource.qrc","server.py","telemetry.py","TCLib.py","PTs_Config_FV.ini","FV_client.py", "ipconfig.txt"]
+    "files": ["GUI/mainView.qml","TC_Config_FV.ini","gui.py","mainView.qml","timing.py","propagateTCs.py","TC_Port_ID.ini","PTLib.py","Images/resource.qrc","server.py","telemetry.py","TCLib.py","PTs_Config_FV.ini","FV_client.py", "ipconfig.txt", "MainPic.png", "logo white.png"]
 }

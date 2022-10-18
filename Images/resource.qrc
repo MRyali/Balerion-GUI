@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>Section.tif</file>
-        <file>Full.tif</file>
-        <file>MainPic.png</file>
-        <file>logo white.png</file>
-    </qresource>
-</RCC>

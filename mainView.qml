@@ -116,7 +116,7 @@ Item {
                 anchors.top: parent.top
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.centerIn: parent
-                source: "/Users/Ghadeer/BalerionGUI/Images/MainPic.png"
+                source: "MainPic.png"
                 mipmap: true
                 anchors.topMargin: 14
                 anchors.bottomMargin: 14
@@ -144,7 +144,7 @@ Item {
                 width: 200
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                source: "/Users/Ghadeer/BalerionGUI/Images/logo white.png"
+                source: "logo white.png"
                 mipmap: true
                 anchors.topMargin: 14
                 anchors.bottomMargin: 14
