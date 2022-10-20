@@ -1,9 +1,19 @@
+/*
+This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
+It is supposed to be strictly declarative and only uses a subset of QML. If you edit
+this file manually, you might introduce QML code that is not supported by Qt Design Studio.
+Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
+*/
+
+import QtQuick 6.2
+import QtQuick.Controls 6.2
 import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
-import "content"
+import "Gage.qml"
 
+//imports .qml files with user defined object types (e.g. gage)
 Item {
     id: window
     width: 1920 * dpi_scale
@@ -92,7 +102,7 @@ Item {
                     fillMode: Image.PreserveAspectFit
                 }
 
-               Gage {
+                Gage {
                     id: pth001
                     name: "PTH001"
                     x: 519

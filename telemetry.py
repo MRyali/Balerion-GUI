@@ -46,22 +46,6 @@ class Readings:
         new_reading['time']= time
         new_reading['type']= name[0:2]
         self.readings[name] = new_reading
-"""
-    def execute(self,name:str,value:str,time:str):
-        print("getting command " + name)
-        if value == 'OPEN_':
-            print("getting command 111111")
-            self.SVs[name].openValve()
-            
-            self.push(name,'OPENED_',time)
-        elif value == 'CLOSE':
-            
-            self.SVs[name].closeValve()
-            
-            self.push(name,'CLOSED_',time)
-
-"""
-
 
 def connectToSever(server_ip, port):
     # called by client to connect to server
