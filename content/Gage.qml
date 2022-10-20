@@ -8,12 +8,20 @@ Row {
     height: 31
 
 
-
+    property color value_color: "#f20515"
     property string value: "0000.00"
     property string unit: "PSI"
 
     function fetchNewVal() {
         text2.text = qsTr(bridge.updateGage(name))
+        if (text2.text==="N/A"){
+           value_color= "#f20515"; //red color
+        }
+        else{
+           value_color= "#2ad12f"; //green color
+        }
+        //add more color ranges based on readings...
+
     }
 
 
@@ -32,7 +40,7 @@ Row {
     Text {
         id: text2
         width: 74
-        color: "#2ad12f"
+        color: value_color
         text: qsTr(value)
         font.pixelSize: 17
         horizontalAlignment: Text.AlignRight
