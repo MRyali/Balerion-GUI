@@ -12,15 +12,21 @@ Row {
     property string value: "0000.00"
     property string unit: "PSI"
 
-    function fetchNewVal() {
+
+    function fetchNewVal() { //updates value + changes color based on a range (range is TBC)
         text2.text = qsTr(bridge.updateGage(name))
         if (text2.text==="N/A"){
            value_color= "#f20515"; //red color
         }
-        else{
-           value_color= "#2ad12f"; //green color
+        else if(parseInt(text2.text)>=2000 & parseInt(text2.text)<=2500){ //if any sensor value is within this range
+           value_color= "#f2e205"; //yellow color
         }
-        //add more color ranges based on readings...
+        else if (parseInt(text2.text)>2500 & name[0]==="T"){ //if temperature sensor exceed 2500 C
+            value_color= "#f20515"; //red color
+        }
+        else{
+            value_color= "#2ad12f"; //green color
+         }
 
     }
 

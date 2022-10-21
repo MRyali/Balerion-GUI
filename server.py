@@ -12,7 +12,7 @@ readings.push("PT-O1","1000.00","0000")
 reading = readings.readings["PT-O1"]
 readings.push("PT-O2","1000.00","0000")
 reading = readings.readings["PT-O2"]
-readings.push("PT-F5","2000.00","0000")
+readings.push("PT-F5","2550.00","0000")
 reading = readings.readings["PT-F5"]
 readings.push("PT-X1","2000.00","0000")
 reading = readings.readings["PT-X1"]
@@ -43,7 +43,7 @@ readings.push("TC-F2","-50.00","0000")
 reading = readings.readings["TC-F2"]
 readings.push("TC-C1","2000.00","0000")
 reading = readings.readings["TC-C1"]
-readings.push("TC-C2","2500.00","0000")
+readings.push("TC-C2","2508.00","0000")
 reading = readings.readings["TC-C2"]
 readings.push("TC-F1","-50.00","0000")
 reading = readings.readings["TC-F1"]
