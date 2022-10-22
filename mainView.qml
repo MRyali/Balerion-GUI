@@ -359,6 +359,7 @@ Item {
             TextField {
                 placeholderText: qsTr("Some Status Messages...")
                 readOnly: true
+                placeholderTextColor: "#000000"
                 font.pixelSize: 24
                 anchors.fill: status_box
                 anchors.leftMargin: 12
