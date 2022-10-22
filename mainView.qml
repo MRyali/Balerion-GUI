@@ -13,38 +13,42 @@ Item {
     scale: 1
 
     function updateElements() {
+        try {
+            // Refresh Helium PTs
+            pto1.fetchNewVal()
+            pto2.fetchNewVal()
+            ptf5.fetchNewVal()
+            ptx1.fetchNewVal()
+            ptx2.fetchNewVal()
+            ptf4.fetchNewVal()
+            // Refresh LOx PTs
+            ptc3.fetchNewVal()
+            ptc2.fetchNewVal()
+            ptc1.fetchNewVal()
+            // Refresh Kerosene PTs
+            ptf1.fetchNewVal()
+            ptf2.fetchNewVal()
+            ptf3.fetchNewVal()
+            ptf204.fetchNewVal()
 
 
+            tco1.fetchNewVal()
+            tcf3.fetchNewVal()
+            tcx1.fetchNewVal()
 
-        // Refresh Helium PTs
-        pto1.fetchNewVal()
-        pto2.fetchNewVal()
-        ptf5.fetchNewVal()
-        ptx1.fetchNewVal()
-        ptx2.fetchNewVal()
-        ptf4.fetchNewVal()
-        // Refresh LOx PTs
-        ptc3.fetchNewVal()
-        ptc2.fetchNewVal()
-        ptc1.fetchNewVal()
-        // Refresh Kerosene PTs
-        ptf1.fetchNewVal()
-        ptf2.fetchNewVal()
-        ptf3.fetchNewVal()
-        ptf204.fetchNewVal()
+            tcx2.fetchNewVal()
+            tcc1.fetchNewVal()
+            tcc2.fetchNewVal()
+            tcf1.fetchNewVal()
 
-
-        tco1.fetchNewVal()
-        tcf3.fetchNewVal()
-        tcx1.fetchNewVal()
-
-        tcx2.fetchNewVal()
-        tcc1.fetchNewVal()
-        tcc2.fetchNewVal()
-        tcf1.fetchNewVal()
-
-        tcf2.fetchNewVal()
-        tcf202.fetchNewVal()
+            tcf2.fetchNewVal()
+            tcf202.fetchNewVal()
+        }
+        catch (error) {
+            console.error("Error: " + error)
+            return "Error: " + error   
+        }
+        return "Pass"
     }
 
     Rectangle {
@@ -355,11 +359,13 @@ Item {
             anchors.right: p8id.right
             anchors.leftMargin: 37
             anchors.topMargin: 10
+            
 
             TextField {
                 placeholderText: qsTr("Some Status Messages...")
                 readOnly: true
                 placeholderTextColor: "#000000"
+                text:updateElements()
                 font.pixelSize: 24
                 anchors.fill: status_box
                 anchors.leftMargin: 12
