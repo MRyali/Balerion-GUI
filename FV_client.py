@@ -13,7 +13,7 @@ systemName = 'FV'
 
 PTs = PTLib.PTs_init("PTs_Config_FV.ini")
 TCs = TCLib.TC_Initialization('TC_Config_FV.ini')
-"SVs = SVLib.initialiseValves('SV_config.ini')"
+SVs = SVLib.initialiseValves('SV_config.ini')
 
 telemetry.parseFile("ipconfig.txt")
 
@@ -23,8 +23,7 @@ server={'IP':telemetry.getIP(),'port':7234}
 print("'" + telemetry.getIP() + "'")
 
 
-"FV_readings = telemetry.Readings(PTs,TCs,SVs)"
-FV_readings = telemetry.Readings(PTs,TCs)
+FV_readings = telemetry.Readings(PTs,TCs,SVs)
 
 #PTLib.refreshPTs(PTs,2)
 

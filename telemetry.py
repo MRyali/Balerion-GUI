@@ -14,13 +14,8 @@ class Readings:
         self.SVs = SV_dict
         self.readings = dict()
         self.refrechAll()
-    """
-    def __init__(self,PT_dict:dict,TC_dict:dict):
-        self.PTs = PT_dict
-        self.TCs = TC_dict
-        self.readings = dict()
-        self.refrechAll()
-    """
+
+
     def refrechAll(self):
         for PT_name in self.PTs:
             new_reading = dict()

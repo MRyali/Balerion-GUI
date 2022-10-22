@@ -8,11 +8,11 @@ from configparser import ConfigParser
 
 
 # Initialize 1-wire protocol drivers
-#os.system('modprobe w1-gpio')
-#os.system('modprobe w1-therm')
+os.system('modprobe w1-gpio')
+os.system('modprobe w1-therm')
 
-os.system('kextload w1-gpio')
-os.system('kextload w1-therm')
+#os.system('kextload w1-gpio')
+#os.system('kextload w1-therm')
 
 
 class Temperature():

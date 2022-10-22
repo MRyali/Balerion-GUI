@@ -94,7 +94,7 @@ Item {
 
                Gage {
                     id: pto1
-                    name: "PT-O1"
+                    name: "PTO001"
                     x: 519
                     y: 27
                     width: 195
@@ -102,7 +102,7 @@ Item {
                 }
                 Gage {
                     id: tco1
-                    name: "TC-O1"
+                    name: "TCO001"
                     x: 1081
                     y: 125
                     width: 194
@@ -112,7 +112,7 @@ Item {
 
                 Gage {
                     id: tcf3
-                    name: "TC-F3"
+                    name: "TCF003"
                     x: 1131
                     y: 172
                     width: 195
@@ -122,7 +122,7 @@ Item {
 
                 Gage {
                     id: ptx1
-                    name: "PT-X1"
+                    name: "PTX001"
                     x: 1311
                     y: 258
                     width: 195
@@ -131,7 +131,7 @@ Item {
 
                 Gage {
                     id: tcx1
-                    name: "TC-X1"
+                    name: "TCX001"
                     x: 1311
                     y: 288
                     width: 195
@@ -141,7 +141,7 @@ Item {
 
                 Gage {
                     id: ptx2
-                    name: "PT-X2"
+                    name: "PTX002"
                     x: 1311
                     y: 352
                     width: 195
@@ -150,7 +150,7 @@ Item {
 
                 Gage {
                     id: tcx2
-                    name: "TC-X2"
+                    name: "TCX002"
                     x: 1311
                     y: 382
                     width: 195
@@ -160,7 +160,7 @@ Item {
 
                 Gage {
                     id: ptf1
-                    name: "PT-F1"
+                    name: "PTF001"
                     x: 1013
                     y: 668
                     width: 194
@@ -169,7 +169,7 @@ Item {
 
                 Gage {
                     id: tcf1
-                    name: "TC-F1"
+                    name: "TCF001"
                     x: 1012
                     y: 741
                     width: 194
@@ -179,7 +179,7 @@ Item {
 
                 Gage {
                     id: ptf2
-                    name: "PT-F2"
+                    name: "PTF002"
                     x: 718
                     y: 800
                     width: 194
@@ -188,7 +188,7 @@ Item {
 
                 Gage {
                     id: tcf2
-                    name: "TC-F2"
+                    name: "TCF002"
                     x: 468
                     y: 737
                     width: 195
@@ -198,7 +198,7 @@ Item {
 
                 Gage {
                     id: ptf3
-                    name: "PT-F3"
+                    name: "PTF003"
                     x: 468
                     y: 668
                     width: 195
@@ -207,7 +207,7 @@ Item {
 
                 Gage {
                     id: tcc1
-                    name: "TC-C1"
+                    name: "TCC001"
                     x: 994
                     y: 431
                     width: 195
@@ -217,7 +217,7 @@ Item {
 
                 Gage {
                     id: pto2
-                    name: "PT-O2"
+                    name: "PTO002"
                     x: 494
                     y: 122
                     width: 194
@@ -226,7 +226,7 @@ Item {
 
                 Gage {
                     id: ptf5
-                    name: "PT-F5"
+                    name: "PTF005"
                     x: 292
                     y: 165
                     width: 195
@@ -235,7 +235,7 @@ Item {
 
                 Gage {
                     id: ptf4
-                    name: "PT-F4"
+                    name: "PTF004"
                     x: 292
                     y: 210
                     width: 194
@@ -244,7 +244,7 @@ Item {
 
                 Gage {
                     id: ptc3
-                    name: "PT-C3"
+                    name: "PTC003"
                     x: 292
                     y: 260
                     width: 194
@@ -253,7 +253,7 @@ Item {
 
                 Gage {
                     id: ptc2
-                    name: "PT-C2"
+                    name: "PTC002"
                     x: 292
                     y: 311
                     width: 194
@@ -262,7 +262,7 @@ Item {
 
                 Gage {
                     id: tcc2
-                    name: "TC-C2"
+                    name: "TCC002"
                     x: 292
                     y: 342
                     width: 194
@@ -272,7 +272,7 @@ Item {
 
                 Gage {
                     id: ptc1
-                    name: "PT-C1"
+                    name: "PTC001"
                     x: 292
                     y: 389
                     width: 194
