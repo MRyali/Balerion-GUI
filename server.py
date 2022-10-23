@@ -8,6 +8,7 @@ from PySide6.QtCore import QThread
 readings = telemetry.Readings({},{},{}) #reads Value, Time, Type
 
 #initializing some dummy sensor values
+"""
 readings.push("PT-O1","1000.00","0000")
 reading = readings.readings["PT-O1"]
 readings.push("PT-O2","1000.00","0000")
@@ -50,10 +51,8 @@ reading = readings.readings["TC-F1"]
 readings.push("TC-X2","-100.00","0000")
 reading = readings.readings["TC-X2"]
 
-
-
-
 print(reading['value'])
+"""
 
 class MyWorker(QThread):
     Myreads:telemetry.Readings
