@@ -8,9 +8,12 @@ from PySide6.QtCore import QThread
 readings = telemetry.Readings({},{},{}) #reads Value, Time, Type
 
 #initializing some dummy sensor values
+
+readings.push("PTC001","380.00","0000") #color function test
+reading = readings.readings["PTC001"]
+readings.push("TCC001","2464","0000")
+reading = readings.readings["TCC001"]
 """
-readings.push("PT-O1","1000.00","0000")
-reading = readings.readings["PT-O1"]
 readings.push("PT-O2","1000.00","0000")
 reading = readings.readings["PT-O2"]
 readings.push("PT-F5","2550.00","0000")
@@ -34,8 +37,7 @@ reading = readings.readings["PT-F2"]
 readings.push("PT-F3","1980.00","0000")
 reading = readings.readings["PT-F3"]
 
-readings.push("TC-O1","-100.00","0000")
-reading = readings.readings["TC-O1"]
+
 readings.push("TC-F3","-50.00","0000")
 reading = readings.readings["TC-F3"]
 readings.push("TC-X1","-100.00","0000")

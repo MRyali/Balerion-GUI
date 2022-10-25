@@ -6,8 +6,10 @@ import "content"
 
 Item {
     id: window
-    width: 1920 * dpi_scale
-    height: 1080 * dpi_scale
+//    width: 1920 * dpi_scale
+//    height: 1080 * dpi_scale
+    width: 2150 * dpi_scale
+    height: 1250 * dpi_scale
     visible: true
     property real dpi_scale: 0.6
     scale: 1
@@ -90,8 +92,8 @@ Item {
 
     Rectangle {
         id: background
-        width: 1920
-        height: 1080
+        width: 2150
+        height: 1250
         visible: true
         color: "#000000"
         anchors.verticalCenter: parent.verticalCenter
@@ -119,7 +121,7 @@ Item {
                 id: p8id_bg
                 anchors.fill: parent
                 anchors.rightMargin: 0
-                anchors.leftMargin: 0
+                anchors.leftMargin: 100
                 anchors.topMargin: 8
                 anchors.bottomMargin: 0
                 Image {

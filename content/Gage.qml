@@ -16,17 +16,30 @@ Row {
     function fetchNewVal() { //updates value + changes color based on a range (range is TBC)
         text2.text = qsTr(bridge.updateGage(name))
         if (text2.text==="N/A"){
-           value_color= "#f20515"; //red color
+           value_color= "#FF0000"; //red
         }
-        else if(parseInt(text2.text)>=2000 & parseInt(text2.text)<=2500){ //if any sensor value is within this range
-           value_color= "#f2e205"; //yellow color
+        else if(name==="PTC001" || name==="PTC002" || name==="PT003"){ //PT Chamber sensors
+           if(Math.abs(parseInt(text2.text)-375) <=2) {//within +/- 2 psi of expected value
+               value_color= "#00FF00"; //green
         }
-        else if (parseInt(text2.text)>2500 & name[0]==="T"){ //if temperature sensor exceed 2500 C
-            value_color= "#f20515"; //red color
+           else if(Math.abs(parseInt(text2.text)-375) >2 && Math.abs(parseInt(text2.text)-375)<=10) { //more than +/- 2 psi but within +/-10 psi of expected value
+               value_color= "#FFFF00"; //yellow
         }
-        else{
-            value_color= "#2ad12f"; //green color
+           else if(Math.abs(parseInt(text2.text)-375) >10) { //more than +/- 2 psi but within +/- 5 psi of expected value
+               value_color= "#FF0000"; //red
+        }
+    }
+        else if(name==="TCC001" || name==="TCC002"){ //TC Chamber sensors
+            if(Math.abs(parseInt(text2.text)-2464) <=10) {//within +/- 2 K of expected value
+                value_color= "#00FF00"; //green
          }
+            else if(Math.abs(parseInt(text2.text)-2464) >10 && Math.abs(parseInt(text2.text)-2464)<=50) { //more than +/- 2 K but within +/-10 K of expected value
+                value_color= "#FFFF00"; //yellow
+         }
+            else if(Math.abs(parseInt(text2.text)-2464) >50) { //more than +/- 2 K but within +/- 5 K of expected value
+                value_color= "#FF0000"; //red
+         }
+     }
 
     }
 
