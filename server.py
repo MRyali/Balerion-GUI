@@ -11,7 +11,7 @@ readings = telemetry.Readings({},{},{}) #reads Value, Time, Type
 
 readings.push("PTC001","380.00","0000") #color function test
 reading = readings.readings["PTC001"]
-readings.push("TCC001","2464","0000")
+readings.push("TCC001","2464.00","0000")
 reading = readings.readings["TCC001"]
 """
 readings.push("PT-O2","1000.00","0000")

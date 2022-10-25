@@ -100,7 +100,7 @@ def guiThreadFunc(inReadings:telemetry.Readings):
     timer = QTimer()
     timer.start(10)
 
-    view.setSource("mainView.qml")
+    view.setSource("mainView2.qml")
 
     root = view.rootObject()
 
