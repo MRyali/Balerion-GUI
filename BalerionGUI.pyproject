@@ -1,3 +1,3 @@
 {
-    "files": ["SV_config.ini","SVLib.py","FV_client.py","TC_Config_FV.ini","PTLib.py","TC_Port_ID.ini","ipconfig.txt","PTs_Config_FV.ini","MainPic.png","propagateTCs.py","logo white.png","server.py","GUI/mainView.qml","timing.py","gui.py","TCLib.py","content/Gage.qml","mainView.qml","telemetry.py", "EngineOutline7.png","EngineOutline8.png", "mainViewOLD.qml"]
+    "files": ["SV_config.ini","SVLib.py","FV_client.py","TC_Config_FV.ini","PTLib.py","TC_Port_ID.ini","ipconfig.txt","PTs_Config_FV.ini","MainPic.png","propagateTCs.py","logo white.png","server.py","GUI/mainView.qml","timing.py","gui.py","TCLib.py","content/Gage.qml","mainView.qml","telemetry.py", "EngineOutline7.png","EngineOutline9.png", "mainViewOLD.qml"]
 }

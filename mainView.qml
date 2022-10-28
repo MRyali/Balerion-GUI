@@ -124,39 +124,49 @@ Item {
                 anchors.leftMargin: 100
                 anchors.topMargin: 8
                 anchors.bottomMargin: 0
+                Image {
+                    id: engineOutline9
+                    x: -1
+                    y: 8
+                    width: 1720
+                    height: 847
+                    source: "EngineOutline9.png"
+                    sourceSize.width: 3000
+                    fillMode: Image.PreserveAspectFit
+                }
                 Gage {
                     id: pto1
                     name: "PTO001"
-                    x: 1279
-                    y: 256
+                    x: 1272
+                    y: 258
                     width: 184
                     height: 27
                 }
                 Gage {
                     id: tco1
                     name: "TCO001"
-                    x: 1301
-                    y: 49
+                    x: 1272
+                    y: 52
                     width: 184
                     height: 29
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: tcf3
                     name: "TCF003"
-                    x: 1306
-                    y: 132
+                    x: 1272
+                    y: 134
                     width: 184
                     height: 28
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: ptx1
                     name: "PTX001"
-                    x: 1271
-                    y: 320
+                    x: 1272
+                    y: 315
                     width: 172
                     height: 33
                 }
@@ -164,18 +174,18 @@ Item {
                 Gage {
                     id: tcx1
                     name: "TCX001"
-                    x: 1271
-                    y: 346
+                    x: 1272
+                    y: 345
                     width: 172
                     height: 32
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: ptx2
                     name: "PTX002"
                     x: 1271
-                    y: 420
+                    y: 415
                     width: 172
                     height: 33
                 }
@@ -187,14 +197,14 @@ Item {
                     y: 445
                     width: 172
                     height: 32
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: ptf1
                     name: "PTF001"
-                    x: 1302
-                    y: 764
+                    x: 1272
+                    y: 753
                     width: 185
                     height: 29
                 }
@@ -202,18 +212,18 @@ Item {
                 Gage {
                     id: tcf1
                     name: "TCF001"
-                    x: 1220
-                    y: 825
+                    x: 1271
+                    y: 815
                     width: 185
                     height: 29
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: ptf2
                     name: "PTF002"
-                    x: 744
-                    y: 696
+                    x: 758
+                    y: 686
                     width: 184
                     height: 29
                 }
@@ -221,18 +231,18 @@ Item {
                 Gage {
                     id: tcf2
                     name: "TCF002"
-                    x: 1175
-                    y: 536
+                    x: 1271
+                    y: 548
                     width: 185
                     height: 30
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: ptf3
                     name: "PTF003"
-                    x: 1302
-                    y: 624
+                    x: 1271
+                    y: 619
                     width: 185
                     height: 29
                 }
@@ -240,18 +250,18 @@ Item {
                 Gage {
                     id: tcc1
                     name: "TCC001"
-                    x: 746
-                    y: 423
+                    x: 762
+                    y: 421
                     width: 183
                     height: 29
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: pto2
                     name: "PTO002"
-                    x: 786
-                    y: 84
+                    x: 800
+                    y: 91
                     width: 186
                     height: 28
                 }
@@ -259,8 +269,8 @@ Item {
                 Gage {
                     id: ptf5
                     name: "PTF005"
-                    x: 788
-                    y: 9
+                    x: 799
+                    y: 14
                     width: 185
                     height: 29
                 }
@@ -268,8 +278,8 @@ Item {
                 Gage {
                     id: ptf4
                     name: "PTF004"
-                    x: 798
-                    y: 211
+                    x: 795
+                    y: 220
                     width: 184
                     height: 29
                 }
@@ -277,7 +287,7 @@ Item {
                 Gage {
                     id: ptc3
                     name: "PTC003"
-                    x: 218
+                    x: 245
                     y: 315
                     width: 182
                     height: 27
@@ -286,8 +296,8 @@ Item {
                 Gage {
                     id: ptc2
                     name: "PTC002"
-                    x: 219
-                    y: 364
+                    x: 246
+                    y: 362
                     width: 176
                     height: 34
                 }
@@ -295,51 +305,41 @@ Item {
                 Gage {
                     id: tcc2
                     name: "TCC002"
-                    x: 219
-                    y: 394
+                    x: 246
+                    y: 392
                     width: 176
                     height: 29
-                    unit: "K"
+                    unit: "ºC"
                 }
 
                 Gage {
                     id: ptc1
                     name: "PTC001"
-                    x: 220
-                    y: 463
+                    x: 247
+                    y: 461
                     width: 176
                     height: 28
                 }
-
-                Image {
-                    id: engineOutline8
-                    x: 0
-                    y: 0
-                    width: 1720
-                    height: 865
-                    source: "EngineOutline8.png"
-                    sourceSize.width: 3000
-                    fillMode: Image.PreserveAspectFit
+                Gage {
+                    id: ptf204
+                    name: "PTF204"
+                    x: 188
+                    y: 436
+                    width: 176
+                    height: 28
+                    visible: false
                 }
                 Gage {
                     id: tcf202
                     name: "TCF202"
-                    x: 292
-                    y: 389
-                    width: 194
-                    height: 31
+                    x: 188
+                    y: 436
+                    width: 176
+                    height: 28
                     visible: false
                 }
 
-                Gage {
-                    id: ptf204
-                    name: "PTF204"
-                    x: 292
-                    y: 389
-                    width: 194
-                    height: 31
-                    visible: false
-                }
+
             }
         }
 
