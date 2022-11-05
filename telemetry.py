@@ -83,7 +83,7 @@ def getCommand(serverSocket:socket,FV_Reandings:Readings):
             
             FV_Reandings.execute(name,value,time)
 
-            print(received_reading)
+            #print(received_reading)
             
             
 

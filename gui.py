@@ -42,6 +42,7 @@ class Bridge(QObject):
             return reading['value']
 
         except:
+            print(gageName, "has an invalid value.")
             return "N/A"
 
         """ Valve stuff
